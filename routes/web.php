@@ -12,19 +12,14 @@ Route::group([
 
 // Bakcend
 
-Route::get('/auth/logout', function () {
-    Auth::logout();
-    $redirectUrl = 'http://127.0.0.1:8000/';
-    return redirect()->away($redirectUrl);
-})->name('google.logout');
 
 // Admin Auth
-
+Route::prefix('admin_login')->group(function () {
     Route::get('login', 'Auth\Admin\LoginController@login')->name('admin.auth.login');
     Route::post('login', 'Auth\Admin\LoginController@loginAdmin')->name('admin.auth.loginAdmin');
     Route::post('logout', 'Auth\Admin\LoginController@logout')->name('admin.auth.logout');
     Route::get('logout', 'Auth\Admin\LoginController@logout');
-
+});
 
 // Admin Dashborad
 Route::group([
@@ -54,7 +49,6 @@ Route::group([
         require base_path('routes/backend/user.php');
     });
 
-    
 // clear config and cache
 //['cache:clear', 'optimize', 'route:cache', 'route:clear', 'view:clear', 'config:cache']
 
