@@ -37,5 +37,13 @@ class AppServiceProvider extends ServiceProvider
         $running_session = $setting ? $setting->running_year : $running_year;
 
         config(['running_session' => $running_session]);
+        //check that app is local
+if ($this->app->isLocal()) {
+    //if local register your services you require for development
+        $this->app->register('Barryvdh\Debugbar\ServiceProvider');
+    } else {
+    //else register your services you require for production
+        $this->app['request']->server->set('HTTPS', true);
+    }
     }
 }
