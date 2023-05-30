@@ -13,7 +13,8 @@ class HomeController extends Controller
    public function index()
    {
       $latest_news = Blog::where('category', 'Latest News')->where('status', 1)->orderby('created_at', 'desc')->take(4)->get();
-      return View::make('frontend.index', compact('latest_news'));
+      $breeds = view::get('https://dog.ceo/api/breeds/list/random/5')['message'];
+      return View::make('frontend.index', compact('latest_news','breeds'));
    }
 
    // News Details

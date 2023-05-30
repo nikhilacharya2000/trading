@@ -49,7 +49,7 @@
                                                 class="fa fa-user fa-1x fa-fw"></i> Profile</a>
                                     <a class="dropdown-item" href="{{ URL :: to('/admin/change_password') }}"> <i
                                                 class="fa fa-lock fa-1x fa-fw"></i> Change Password</a>
-                                    <a class="dropdown-item" href="{{ URL :: to('/admin_login/logout') }}"> <i
+                                    <a class="dropdown-item" href="{{ URL :: to('/logout') }}"> <i
                                                 class="fa fa-sign-out-alt fa-1x fa-fw"></i> Logout</a>
                                 </div>
                             </div>

@@ -98,7 +98,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ URL :: to('/admin_login/logout') }}">
+                    <a href="{{ URL :: to('/logout') }}">
                         <i class="metismenu-icon pe-7s-upload"></i>
                         Logout
                     </a>
