@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <!--=== Latest News Start ===---->
-            @include('frontend.layouts.latest_news')
+             @include('frontend.layouts.latest_news')
             <!--=== Latest News Start ===---->
         </div>
     </div>
