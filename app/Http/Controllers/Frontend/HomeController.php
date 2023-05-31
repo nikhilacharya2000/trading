@@ -75,34 +75,47 @@ class HomeController extends Controller
     }
 
     public function nifty50()
-    {
-        $accessKey = 'a726603e54efab53c940dd64509e5916';
-        $exchangeMIC = 'INDX';
+{
+    $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
+    //https://www.nseindia.com/api/quote-derivative?symbol=NIFTY derivative api
+    
 
-        $apiEndpoint = 'http://api.marketstack.com/v1/exchanges/' . $exchangeMIC . '/tickers';
-        $queryParams = [
-            'access_key' => $accessKey,
-        ];
-
-        try {
-            $response = Http::get($apiEndpoint, $queryParams);
-
-            $apiResult = $response->json();
-
-            $nifty50Data = [];
-            if (isset($apiResult['data'])) {
-                $nifty50Data = $apiResult['data'];
-            }
-        } catch (\Exception $e) {
-            // Log the exception
-            \Log::error($e->getMessage());
-
-            // Handle the exception if the API request fails
-            $nifty50Data = null;
+    try {
+        // Initialize cURL session
+        $curl = curl_init();
+        
+        // Set cURL options
+        curl_setopt($curl, CURLOPT_URL, $apiEndpoint); // Set the URL
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // Return the response instead of printing it
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL verification (not recommended in production)
+        
+        // Execute the cURL request
+        $apiResult = curl_exec($curl);
+        
+        // Check if the request was successful
+        if ($apiResult === false) {
+            throw new \Exception('cURL request failed: ' . curl_error($curl));
         }
-
-        return view('frontend.nifty50', ['nifty50Data' => $nifty50Data]);
+        
+        // Close the cURL session
+        curl_close($curl);
+        
+        // Convert the JSON response to an associative array
+        $apiResult = json_decode($apiResult, true);
+        
+        echo "<pre>";
+        print_r($apiResult); // Print the API result for debugging purposes
+        die; // Stop further execution of the script
+        
+    } catch (\Exception $e) {
+        // Log the exception
+        error_log($e->getMessage());
+        print_r($e->getMessage());
+        die;
+        // Handle the exception if the API request fails
+        $nifty50Data = null; // Set the variable to null if the request fails
     }
+}
 
     // News Details
     public function viewNews(Blog $blog)
