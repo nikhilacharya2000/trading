@@ -6,11 +6,13 @@
 <!-- frontend/index.blade.php -->
 <!DOCTYPE html>
 <html>
-
+<head>
+    <title>Stock Market Data</title>
+</head>
 <body>
-    <h1>Stock Market Data </h1>
+    <h1>Nifty 50 </h1>
 
-    @if ($apiData)
+    @if ($nifty50Data)
         <table>
             <thead >
                 <tr>
@@ -23,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($apiData as $data)
+                @foreach ($nifty50Data as $data)
                     <tr>
                         <td>{{ $data['date'] }}</td>
                         <td>{{ $data['open'] }}</td>

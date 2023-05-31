@@ -4,14 +4,22 @@
     @include('frontend.layouts.head')
 </head>
 <body>
-    <div class="container">    
-        <section>
+    <div>
+
+        {{-- header section --}}
+        <header>
+            @include('frontend.layouts.header')
+        </header>
+        
+        {{-- main section --}}
+        <main class="pb-5 ">
             @yield('content')
-        </section>
+        </main>
+        
         <!-- Footer section -->
-        <footer>
-            @include('frontend.layouts.footer')
-        </footer>
+        
+        @include('frontend.layouts.footer')
     </div>
+    
 </body>
 </html>
