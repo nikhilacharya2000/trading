@@ -8,7 +8,7 @@
 <html>
 
 <body>
-    <h1>Stock Market Data </h1>
+    <h1>RELIANCE.XNSE </h1>
 
     @if ($apiData)
         <table>

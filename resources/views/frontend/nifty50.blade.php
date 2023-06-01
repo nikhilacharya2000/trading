@@ -1,46 +1,66 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Home')
-
+@section('title', 'Nifty50')
 @section('content')
-<!-- frontend/index.blade.php -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Stock Market Data</title>
-</head>
-<body>
-    <h1>Nifty 50 </h1>
+    <h1>FINNIFTY- Option Chain</h1>
 
-    @if ($nifty50Data)
+    @if (isset($data) && !empty($data))
         <table>
-            <thead >
+            <thead>
+                <tr >
+                    <th style="color:green ; text-align: center"colspan='7'>Calls</th>
+                    <th colspan='1'></th>
+                    <th style="color:red ; text-align: center" colspan='7'>Puts</th>
+            </tr> 
                 <tr>
                     <th>Date</th>
-                    <th>Open</th>
-                    <th>High</th>
-                    <th>Low</th>
-                    <th>Close</th>
-                    <th>Volume</th>
+                    <th>OI</th>
+                    <th>CHNG IN OI</th>
+                    <th>VOLUME</th>
+                    <th>IV</th>
+                    <th>CHNG</th>
+                    <th>LTP</th>
+                    <th>STRIKE</th>
+                   
+                    <th>Date</th>
+                    <th>LTP</th>
+                    <th>CHNG</th>
+                    <th>IV</th>
+                    <th>VOLUME</th>
+                    <th>CHNG IN OI</th>
+                    <th>OI</th>
                 </tr>
             </thead>
+            
             <tbody>
-                @foreach ($nifty50Data as $data)
-                    <tr>
-                        <td>{{ $data['date'] }}</td>
-                        <td>{{ $data['open'] }}</td>
-                        <td>{{ $data['high'] }}</td>
-                        <td>{{ $data['low'] }}</td>
-                        <td>{{ $data['close'] }}</td>
-                        <td>{{ $data['volume'] }}</td>
-                    </tr>
+                @foreach ($data as $option)
+                @if (isset($option['PE']) && isset($option['CE']))
+                        <tr> <td>{{ $option['CE']['expiryDate'] }}</td>
+                            <td>{{ $option['CE']['openInterest'] }}</td>
+                            <td>{{ $option['CE']['changeinOpenInterest'] }}</td>
+                            <td>{{ $option['CE']['totalTradedVolume'] }}</td>
+                            <td>{{ $option['CE']['impliedVolatility'] }}</td>
+                            <td>{{ $option['CE']['change'] }}</td>
+                            <td>{{ $option['CE']['lastPrice'] }}</td>
+                            <td>{{ $option['strikePrice'] }}</td>
+                            <td>{{ $option ['PE']['expiryDate'] }}</td>
+                            <td>{{ $option['PE']['openInterest'] }}</td>
+                            <td>{{ $option['PE']['changeinOpenInterest'] }}</td>
+                            <td>{{ $option['PE']['totalTradedVolume'] }}</td>
+                            <td>{{ $option['PE']['impliedVolatility'] }}</td>
+                            <td>{{ $option['PE']['change'] }}</td>
+                            <td>{{ $option['PE']['lastPrice'] }}</td>
+                        
+                           
+                            
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
-    @else
-        <p>Failed to retrieve stock market data. Please try again later.</p>
-    @endif
-</body>
-</html>
+        
 
+    @else
+        <p>No option chain data available</p>
+    @endif
 @endsection

@@ -76,73 +76,155 @@ class HomeController extends Controller
 
     public function nifty50()
 {
-    $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
-    //https://www.nseindia.com/api/quote-derivative?symbol=NIFTY derivative api
-    
+    $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY';
 
     try {
         // Initialize cURL session
         $curl = curl_init();
-        
+
         // Set cURL options
         curl_setopt($curl, CURLOPT_URL, $apiEndpoint); // Set the URL
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // Return the response instead of printing it
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL verification (not recommended in production)
-        
+
         // Execute the cURL request
         $apiResult = curl_exec($curl);
-        
+
         // Check if the request was successful
         if ($apiResult === false) {
             throw new \Exception('cURL request failed: ' . curl_error($curl));
         }
-        
+
         // Close the cURL session
         curl_close($curl);
-        
+
         // Convert the JSON response to an associative array
         $apiResult = json_decode($apiResult, true);
-        
-        echo "<pre>";
-        print_r($apiResult); // Print the API result for debugging purposes
-        die; // Stop further execution of the script
-        
+
+        // Process the option chain data
+        $optionChainData = [];
+        if (isset($apiResult['records']['data'])) {
+            $optionChainData = $apiResult['records']['data'];
+        }
+
+        // Filter the option chain data to include only [PE] array
+        $filteredData = array_filter($optionChainData, function ($item) {
+            return isset($item['PE']) && isset($item['CE']);
+        });
+
+        return view('frontend.nifty50', ['data' => $filteredData]);
     } catch (\Exception $e) {
         // Log the exception
         error_log($e->getMessage());
-        print_r($e->getMessage());
-        die;
+
         // Handle the exception if the API request fails
-        $nifty50Data = null; // Set the variable to null if the request fails
+        return view('frontend.nifty50', ['data' => null]);
     }
 }
 
-    // News Details
+
+
+
+
+public function optionChain()
+    {
+        $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
+        //https://www.nseindia.com/api/quote-derivative?symbol=NIFTY
+
+        try {
+            // Initialize cURL session
+            $curl = curl_init();
+
+            // Set cURL options
+            curl_setopt($curl, CURLOPT_URL, $apiEndpoint); // Set the URL
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // Return the response instead of printing it
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL verification (not recommended in production)
+
+            // Execute the cURL request
+            $apiResult = curl_exec($curl);
+
+            // Check if the request was successful
+            if ($apiResult === false) {
+                throw new \Exception('cURL request failed: ' . curl_error($curl));
+            }
+
+            // Close the cURL session
+            curl_close($curl);
+
+            // Convert the JSON response to an associative array
+            $apiResult = json_decode($apiResult, true);
+
+            echo "<pre>";
+            print_r($apiResult); // Print the API result for debugging purposes
+            die; // Stop further execution of the script
+
+        } catch (\Exception $e) {
+            // Log the exception
+            error_log($e->getMessage());
+            print_r($e->getMessage());
+            die;
+            // Handle the exception if the API request fails
+            $nifty50Data = null; // Set the variable to null if the request fails
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+// News Details
     public function viewNews(Blog $blog)
     {
         return view('frontend.newsDetails', compact('blog'));
     }
 
-    //    public function callApi()
-    //    {
-    //        $client = new Client();
-
-    //        try {
-    //            $response = $client->get('https://api.example.com/endpoint', [
-    //                'headers' => [
-    //                    'Authorization' => 'Bearer ' . config('app.api_key'),
-    //                ],
-    //            ]);
-
-    //            $data = json_decode($response->getBody(), true);
-
-    //            // Process the API response
-
-    //            return $data;
-    //        } catch (RequestException $e) {
-    //            // Handle request exception
-    //            // For example, log the error or show an error message to the user
-    //            return null;
-    //        }
-    //    }
 }
+
+
+
+
+//  Marketstack Option_chains Data - Paid Plan (Market Indices)
+
+// public function nifty50()
+// {
+//     $apiEndpoint = 'https://api.marketstack.com/v1/eod/symbols/NSE:NIFTY50/option_chains';
+//     $accessKey = 'a726603e54efab53c940dd64509e5916';
+
+//     try {
+//         // Initialize cURL session
+//         $curl = curl_init();
+
+//         // Set cURL options
+//         curl_setopt($curl, CURLOPT_URL, $apiEndpoint . '?access_key=' . $accessKey); // Set the URL with access key
+//         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // Return the response instead of printing it
+
+//         // Execute the cURL request
+//         $apiResult = curl_exec($curl);
+
+//         // Check if the request was successful
+//         if ($apiResult === false) {
+//             throw new \Exception('cURL request failed: ' . curl_error($curl));
+//         }
+
+//         // Close the cURL session
+//         curl_close($curl);
+
+//         // Process the API result
+//         $optionChainData = json_decode($apiResult, true);
+
+//         // Pass the option chain data to the view
+//         return view('frontend.nifty50', ['apiResult' => $optionChainData]);
+//     } catch (\Exception $e) {
+//         // Log the exception
+//         error_log($e->getMessage());
+
+//         // Handle the exception if the API request fails
+//         return view('frontend.nifty50', ['apiResult' => null]);
+//     }
+// }
