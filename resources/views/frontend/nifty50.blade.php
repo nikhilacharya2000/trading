@@ -33,7 +33,14 @@
             </thead>
             
             <tbody>
+            @php
+            $int = 0   
+            @endphp
                 @foreach ($data as $option)
+                
+                @php
+                $int+= $option['CE']['openInterest']    
+                @endphp
                 @if (isset($option['PE']) && isset($option['CE']))
                         <tr> <td>{{ $option['CE']['expiryDate'] }}</td>
                             <td>{{ $option['CE']['openInterest'] }}</td>
@@ -55,7 +62,27 @@
                             
                         </tr>
                     @endif
+                    
                 @endforeach
+                <tr> <td></td>
+                            <td>{{$int}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        
+                           
+                            
+                        </tr>
             </tbody>
         </table>
         
