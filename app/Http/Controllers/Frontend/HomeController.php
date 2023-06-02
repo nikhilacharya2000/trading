@@ -76,7 +76,7 @@ class HomeController extends Controller
 
     public function nifty50()
 {
-    $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY';
+    $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
 
     try {
         // Initialize cURL session
