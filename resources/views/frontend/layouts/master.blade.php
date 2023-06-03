@@ -4,21 +4,24 @@
     @include('frontend.layouts.head')
 </head>
 <body>
-    <div>
+    <div lass="app-container app-theme-white fixed-sidebar fixed-header body-tabs-line">
+    @include('frontend.layouts.topbar')
 
-        {{-- header section --}}
-        <header>
-            @include('frontend.layouts.header')
-        </header>
+    <div class="app-main">
+        @include('frontend.layouts.sidebar')
+        <div class="app-main__outer" style="min-height: 100vh">
+            <div class="app-main__inner">
+                @yield('content')
+            </div>
+        </div>
+    </div>
         
-        {{-- main section --}}
-        <main class="pb-5 ">
-            @yield('content')
-        </main>
+       
         
-        <!-- Footer section -->
-        
+    <div class="app-wrapper-footer">
         @include('frontend.layouts.footer')
+     
+    </div>
     </div>
     
 </body>

@@ -74,7 +74,7 @@ class HomeController extends Controller
         return view('frontend.index', ['apiData' => $apiData]);
     }
 
-    public function nifty50()
+    public function finnifty()
 {
     $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
 
@@ -115,12 +115,12 @@ class HomeController extends Controller
             return isset($item['PE']) && isset($item['CE']);
         });
         
-        return view('frontend.nifty50', compact('data','expiryDate1'));
+        return view('frontend.finnifty', compact('data','expiryDate1'));
     } catch (\Exception $e) {
         // Log the exception
         error_log($e->getMessage());
         // Handle the exception if the API request fails
-        return view('frontend.nifty50', ['data' => null]);
+        return view('frontend.finnifty', ['data' => null]);
     }
 }
 
@@ -166,7 +166,7 @@ public function optionChain()
             print_r($e->getMessage());
             die;
             // Handle the exception if the API request fails
-            $nifty50Data = null; // Set the variable to null if the request fails
+            $finniftyData = null; // Set the variable to null if the request fails
         }
     }
 

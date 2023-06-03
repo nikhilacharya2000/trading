@@ -64,3 +64,5 @@ Route::group([
 //   }
 //});
 
+
+Route::get('/finnifty ',[HomeController::class,'finnifty'])->name('finnifty');

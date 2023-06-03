@@ -8,36 +8,38 @@
 <html>
 
 <body>
-    <h1>RELIANCE.XNSE </h1>
+   <div>
+   <h1>RELIANCE.XNSE </h1>
 
-    @if ($apiData)
-        <table>
-            <thead >
+@if ($apiData)
+    <table>
+        <thead >
+            <tr>
+                <th>Date</th>
+                <th>Open</th>
+                <th>High</th>
+                <th>Low</th>
+                <th>Close</th>
+                <th>Volume</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($apiData as $data)
                 <tr>
-                    <th>Date</th>
-                    <th>Open</th>
-                    <th>High</th>
-                    <th>Low</th>
-                    <th>Close</th>
-                    <th>Volume</th>
+                    <td>{{ $data['date'] }}</td>
+                    <td>{{ $data['open'] }}</td>
+                    <td>{{ $data['high'] }}</td>
+                    <td>{{ $data['low'] }}</td>
+                    <td>{{ $data['close'] }}</td>
+                    <td>{{ $data['volume'] }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($apiData as $data)
-                    <tr>
-                        <td>{{ $data['date'] }}</td>
-                        <td>{{ $data['open'] }}</td>
-                        <td>{{ $data['high'] }}</td>
-                        <td>{{ $data['low'] }}</td>
-                        <td>{{ $data['close'] }}</td>
-                        <td>{{ $data['volume'] }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @else
-        <p>Failed to retrieve stock market data. Please try again later.</p>
-    @endif
+            @endforeach
+        </tbody>
+    </table>
+@else
+    <p>Failed to retrieve stock market data. Please try again later.</p>
+@endif
+   </div>
 </body>
 </html>
 
