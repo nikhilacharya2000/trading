@@ -77,10 +77,51 @@
                     </ul>
                 </li>
 
+
+
+                <li>
+                    
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-menu"></i>
+                        Indices Sectoral
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                    <li class="treeview">
+                            <a href="{{ URL :: to('niftItSectoral') }}">
+                                <i class="metismenu-icon"></i><span>Nifty It</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="{{ URL :: to('#') }}">
+                                <i class="metismenu-icon"></i><span>Nifty Auto</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="{{ URL :: to('#') }}">
+                                <i class="metismenu-icon"></i><span>Nifty Bank </span>
+                            </a>
+                        </li>
+                        
+                        <li class="treeview">
+                            <a href="{{ URL :: to('#') }}">
+                                <i class="metismenu-icon"></i><span>Nifty Fmcg</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="{{ URL :: to('#') }}">
+                                <i class="metismenu-icon"></i><span>Nifty Pharma</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
                 <li>
                     <a href="{{ URL :: to('/ ') }}">
                         <i class="metismenu-icon pe-7s-bookmarks"></i>
-                        Marketstack -RELIANCE.XNSE 
+                        Marketstack API 
                         <!-- (https://marketstack.com/) -->
                     </a>
                 </li>

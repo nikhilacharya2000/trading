@@ -131,7 +131,7 @@ public function Nifty()
 
 
     
-public function Banknifty()
+public function BankNifty()
     {
         $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY';
 
@@ -182,7 +182,7 @@ public function Banknifty()
     }
 
      
-    public function Finnifty()
+    public function FinNifty()
 {
     $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
 
@@ -281,6 +281,94 @@ public function optionChain()
 
 
 
+
+                                                                            // 00    00    00    00
+                                                                            // 00    00    00    00
+                                                                            // 00 00 00 00 00 00 00
+                                                                            // 00 00 00 00 00 00 00
+                                                                            // 00 00 00 00 00 00 00
+                                                                            // 00000000000000000000
+                                                                            // 00000000000000000000
+                                                                                     //0 0
+                                                                                   //0     0
+                                                                                // 0         0
+                                                                            //   0            0
+                                                                            // 0              0
+                                                                            // 0             0
+                                                                            // 0            0
+                                                                            // 0           0
+                                                                            // 0          0
+                                                                            // 0         0
+                                                                            // 0        0
+                                                                            // 0       0
+                                                                            // 0      0
+                                                                            // 0     0
+                                                                            // 0    0
+                                                                            // 0   0
+                                                                            // 0  0
+                                                                            // 0 0
+                                                                            // 00
+                                                                            // 0 0
+                                                                            // 0   0
+                                                                            // 0     0
+                                                                            // 0       0
+                                                                            // 0         0 
+                                                                            // 0           0
+                                                                            // 0             0
+                                                                            // 0               0
+                                                                            // 0                 0
+                                                                            // 0                   0
+                                                                            // 0                     0
+                                                                            // 0                       0
+                                                                            // 0                         0      
+                                                                            // 0                           0
+
+
+
+    public function NiftItSectoral()
+    {
+        // Set the endpoint URL
+        $url = 'https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%20AUTO';
+    
+        // Initialize cURL session
+        $ch = curl_init();
+    
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+    
+        // Set headers to mimic a web browser request
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
+        ]);
+    
+        // Execute the cURL request
+        $response = curl_exec($ch);
+    
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            $error = curl_error($ch);
+            // Handle the error accordingly
+            curl_close($ch);
+            return 'cURL Error: ' . $error;
+        }
+    
+        // Close cURL session
+        curl_close($ch);
+    
+        // Process the response
+        $data = json_decode($response, true);
+    
+        // Pass the data to the view
+        return view('frontend.niftItSectoral')->with('data', $data);
+    }
+
+
+
+
+
+    
 
 // News Details
     public function viewNews(Blog $blog)

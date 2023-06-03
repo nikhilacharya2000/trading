@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Finnifty')
+@section('title', 'FinNifty')
 @section('content')
 
     <div class="app-page-title">
@@ -9,7 +9,7 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div>FINNIFTY- Option Chain</div>
+                <div>FinNifty- Option Chain</div>
                
             </div>
         </div>
