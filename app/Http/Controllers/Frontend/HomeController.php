@@ -106,17 +106,19 @@ class HomeController extends Controller
         if (isset($apiResult['records']['data'])) {
             $optionChainData = $apiResult['records']['data'];
         }
-
+        $expiryDate1 = [];
+        if(isset($apiResult['records']['expiryDates'])){
+            $expiryDate1 = $apiResult['records']['expiryDates'];
+        }
         // Filter the option chain data to include only [PE] array
-        $filteredData = array_filter($optionChainData, function ($item) {
+        $data = array_filter($optionChainData, function ($item) {
             return isset($item['PE']) && isset($item['CE']);
         });
-
-        return view('frontend.nifty50', ['data' => $filteredData]);
+        
+        return view('frontend.nifty50', compact('data','expiryDate1'));
     } catch (\Exception $e) {
         // Log the exception
         error_log($e->getMessage());
-
         // Handle the exception if the API request fails
         return view('frontend.nifty50', ['data' => null]);
     }

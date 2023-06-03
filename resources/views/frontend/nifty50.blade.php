@@ -11,69 +11,34 @@
 
     <div style="margin-left: 455px; margin-top: 40px; margin-bottom: 25px; color: #c71d47;">
         <label for="expiry_date"><b>Select Expiry:</b></label>
+           
         <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
             <option value="" selected>Options</option>
-            @php
-                $addedDates = [];
-                $sortedData = collect($data)->sortBy(function ($option) {
-                    return strtotime($option['expiryDate']);
-                })->values()->all();
-            @endphp
+            
+               
+            @if (isset($expiryDate1))
+                
+              
+             
+            @foreach ($expiryDate1 as $option)
+                
     
-            @foreach ($sortedData as $option)
-                @php
-                    $expiryDate = $option['expiryDate'];
-                @endphp
-    
-                @if (!in_array($expiryDate, $addedDates))
-                    <option value="{{ $expiryDate }}">{{ date('d-M-Y', strtotime($expiryDate)) }}</option>
-                    @php
-                        $addedDates[] = $expiryDate;
-                    @endphp
-                @endif
+                 
+                    <option value="{{ $option }}">{{ date('d-M-Y', strtotime($option)) }}</option>
+                     
+                 
             @endforeach
+            @endif  
         </select>
     </div>
 
     
 
-{{-- 
-    <div style="margin-left: 455px; /* width: 0px; */ margin-top: 40px;margin-bottom: 25px;color: rosybrown;">
-
-        <label for="cars"><b>Select Expiry:</b></label>
-        <select style="width: 234px;height: 37px;color: darkblue;" id="cars">
-            @php
-                $addedDates = [];
-            @endphp
-
-            @foreach ($data as $option)
-                @php
-                    $expiryDate = $option['expiryDate'];
-                @endphp
-
-                @if (!in_array($expiryDate, $addedDates))
-                    <option value="{{ $expiryDate }}">{{ $expiryDate }}</option>
-                    @php
-                        $addedDates[] = $expiryDate;
-                    @endphp
-                @endif
-            @endforeach
-        </select>
-    </div>
-     --}}
-
+                 
+ 
      
-    {{-- 
-    <div style="margin-left: 455px; /* width: 0px; */ margin-top: 40px;margin-bottom: 25px;color: rosybrown;">
-
-        <label for="cars"><b>Select Expiry:</b></label>
-        <select style="width: 234px;height: 37px;color: darkblue;" id="cars">
-            @foreach ($data as $option)
-                <option value="{{ $option['expiryDate'] }}">{{ $option['expiryDate'] }}</option>
-            @endforeach
-        </select>
-    </div>
-     --}}
+ 
+     
 
 
 
@@ -177,12 +142,13 @@
 
     <script>
         // JavaScript code to handle table filtering based on selected expiry date
-        const selectElement = document.getElementById('expiry_date');
-        selectElement.addEventListener('change', (event) => {
-            const selectedOption = event.target.value;
+
+        $("#expiry_date").change(function(){
+            const selectedOption = $("#expiry_date").val();
             const tableRows = document.querySelectorAll('tbody tr');
-    
+               
             tableRows.forEach((row) => {
+                console.log(row);
                 if (row.classList.contains(selectedOption)) {
                     row.style.display = '';
                 } else {
@@ -190,6 +156,7 @@
                 }
             });
         });
+        
     </script>
 
 
