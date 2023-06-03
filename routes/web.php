@@ -63,6 +63,3 @@ Route::group([
 //      return "<h1>Not valid Artisan command</h1>";
 //   }
 //});
-
-
-Route::get('/finnifty ',[HomeController::class,'finnifty'])->name('finnifty');

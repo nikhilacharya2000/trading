@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Finnifty')
+@section('title', 'Nifty')
 @section('content')
 
     <div class="app-page-title">
@@ -9,7 +9,7 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div>RELIANCE.XNSE </div>
+                <div>Nifty- Option Chain</div>
                
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <!-- <label for="expiry_date"><b>Select Expiry:</b></label>
+                        <label for="expiry_date"><b>Select Expiry:</b></label>
                         <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
                             <option value="" selected>Options</option>
 
@@ -32,7 +32,7 @@
                                     <option value="{{ $option }}">{{ date('d-M-Y', strtotime($option)) }}</option>
                                 @endforeach
                             @endif
-                        </select> -->
+                        </select>
                     </div>
                 </div>
             </div>
@@ -40,35 +40,102 @@
     </div>
     <div style="text-align: center;">
 
-        
-@if ($apiData)
-    <table>
-        <thead >
-            <tr>
-                <th>Date</th>
-                <th>Open</th>
-                <th>High</th>
-                <th>Low</th>
-                <th>Close</th>
-                <th>Volume</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($apiData as $data)
+        @if (isset($data) && !empty($data))
+
+        <table style=" margin: auto;">
+            <thead>
                 <tr>
-                    <td>{{ $data['date'] }}</td>
-                    <td>{{ $data['open'] }}</td>
-                    <td>{{ $data['high'] }}</td>
-                    <td>{{ $data['low'] }}</td>
-                    <td>{{ $data['close'] }}</td>
-                    <td>{{ $data['volume'] }}</td>
+                    <th style="color:green ; text-align: center"colspan='8'>Calls</th>
+                    <th colspan='1'></th>
+                    <th style="color:red ; text-align: center" colspan='7'>Puts</th>
+                    
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-@else
-    <p>Failed to retrieve stock market data. Please try again later.</p>
-@endif
+                <tr>
+                    <th style="color:#ff5200">Chain Name </th>
+                    <th>Date</th>
+                    <th>OI</th>
+                    <th>CHNG IN OI</th>
+                    <th>VOLUME</th>
+                    <th>IV</th>
+                    <th>CHNG</th>
+                    <th>LTP</th>
+                    <th style="color:#9d007b">STRIKE</th>
+
+                    
+                    <th>LTP</th>
+                    <th>CHNG</th>
+                    <th>IV</th>
+                    <th>VOLUME</th>
+                    <th>CHNG IN OI</th>
+                    <th>OI</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @php
+                    $oiCE = 0;
+                    $coiCE = 0;
+                    $volCE = 0;
+                    $oiPE = 0;
+                    $coiPE = 0;
+                    $volPE = 0;
+                @endphp
+                @foreach ($data as $option)
+                    @php
+                        $oiCE += $option['CE']['openInterest'];
+                        $coiCE += $option['CE']['changeinOpenInterest'];
+                        $volCE += $option['CE']['totalTradedVolume'];
+                        $oiPE += $option['PE']['openInterest'];
+                        $coiPE += $option['PE']['changeinOpenInterest'];
+                        $volPE += $option['PE']['totalTradedVolume'];
+                    @endphp
+                    @if (isset($option['PE']) && isset($option['CE']))
+                        <tr class="{{ $option['expiryDate'] }}">
+                        <td>{{ $option['CE']['underlying'] }}</td>
+                            <td>{{ $option['expiryDate'] }}</td>
+    
+
+                            <td>{{ $option['CE']['openInterest'] }}</td>
+                            <td>{{ $option['CE']['changeinOpenInterest'] }}</td>
+                            <td>{{ $option['CE']['totalTradedVolume'] }}</td>
+                            <td>{{ $option['CE']['impliedVolatility'] }}</td>
+                            <td>{{ $option['CE']['change'] }}</td>
+                            <td>{{ $option['CE']['lastPrice'] }}</td>
+                            <td>{{ $option['strikePrice'] }}</td>
+                           
+                            <td>{{ $option['PE']['lastPrice'] }}</td>
+                            <td>{{ $option['PE']['change'] }}</td>
+                            <td>{{ $option['PE']['impliedVolatility'] }}</td>
+                            <td>{{ $option['PE']['totalTradedVolume'] }}</td>
+                            <td>{{ $option['PE']['changeinOpenInterest'] }}</td>
+                            <td>{{ $option['PE']['openInterest'] }}</td>
+                            <td>{{ $option['PE']['expiryDate'] }}</td>
+                        </tr>
+                    @endif
+                @endforeach
+                <tr>
+                    <td style="color: rgb(255, 94, 0)"><b>TOTAL</b></td>
+                    <td>{{ $oiCE }}</td>
+                    <td>{{ $coiCE }}</td>
+                    <td>{{ $volCE }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ $volPE }}</td>
+                    <td>{{ $coiPE }}</td>
+                    <td>{{ $oiPE }}</td>
+                </tr>
+            </tbody>
+        </table>
+    @else
+        <p>No option chain data available</p>
+    @endif
     </div>
 
     <style>

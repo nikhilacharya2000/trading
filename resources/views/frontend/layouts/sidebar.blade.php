@@ -55,10 +55,20 @@
                 <li>
                     <a href="#">
                         <i class="metismenu-icon pe-7s-menu"></i>
-                        Derivatives
+                        Derivatives (Option-Chain)
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
+                        <li class="treeview">
+                            <a href="{{ URL :: to('nifty') }}">
+                                <i class="metismenu-icon"></i><span>NIFTY</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="{{ URL :: to('banknifty') }}">
+                                <i class="metismenu-icon"></i><span>BANKNIFTY</span>
+                            </a>
+                        </li>
                         <li class="treeview">
                             <a href="{{ URL :: to('finnifty') }}">
                                 <i class="metismenu-icon"></i><span>FINNIFTY</span>
