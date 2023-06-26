@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use View;
-// use GuzzleHttp\Client;
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Http;
-use WebSocket\Client;
+// use WebSocket\Client;
 
 use Ratchet\Client\WebSocket;
 use Ratchet\RFC6455\Messaging\MessageInterface;
@@ -363,41 +363,41 @@ class HomeController extends Controller
     // 3  Marketstack Option_chains Data - Paid Plan (Market Indices) In Add New Key For Testing
 
     public function optionChain()
-    {
-        $apiEndpoint = 'ws://test.lisuns.com:4575/GetLastQuoteOptionChain/';
-        $accessKey = '40d8790c-266a-40bb-a5fc-7bc38d3dc5ca'; // Replace with your Global Datafeeds API access key
-        $exchange = 'NFO';
-        $product = 'NIFTY';
+{
+    $apiEndpoint = 'http://test.lisuns.com:4531/GetInstruments/';
 
-        try {
-            // Create a new WebSocket client
-            $client = new \WebSocket\Client($apiEndpoint);
+    $accessKey = '71d17196-a2cd-4fe2-b494-ff9c44ab2f18';
+    $exchange = 'NFO';
 
-            // Send the subscription payload
-            $payload = [
+    try {
+        // Create a new Guzzle HTTP client
+        $client = new Client();
+
+        // Send the API request
+        $response = $client->get($apiEndpoint, [
+            'query' => [
                 'accessKey' => $accessKey,
                 'exchange' => $exchange,
-                'product' => $product,
-            ];
-            $client->send(json_encode($payload));
+            ],
+        ]);
 
-            // Receive and process the API result
-            $apiResult = $client->receive();
-            $optionChainData = json_decode($apiResult, true);
+        // Get the response body as a string
+        $responseBody = $response->getBody()->getContents();
 
-            // Display the option chain data
-            echo '<pre>';
-            print_r($optionChainData);
-            echo '</pre>';
+        // Process the API response
+        $optionChainData = json_decode($responseBody, true);
 
-            // Close the WebSocket connection
-            $client->close();
-        } catch (\Exception $e) {
-            // Log the exception
-            error_log($e->getMessage());
+        // Display the option chain data
+        echo '<pre>';
+        print_r($optionChainData);
+        echo '</pre>';
+    } catch (\Exception $e) {
+        // Log the exception
+        error_log($e->getMessage());
 
-            // Handle the exception if the WebSocket request fails
-            echo 'WebSocket request failed: ' . $e->getMessage();
-        }
+        // Handle the exception if the API request fails
+        echo 'API request failed: ' . $e->getMessage();
     }
+}
+
 }
