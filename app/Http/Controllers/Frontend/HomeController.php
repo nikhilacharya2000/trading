@@ -364,7 +364,7 @@ class HomeController extends Controller
 
     public function optionChain()
     {
-        $apiEndpoint = 'ws://globaldatafeeds.in:4575/GetLastQuoteOptionChain/';
+        $apiEndpoint = 'ws://test.lisuns.com:4575/GetLastQuoteOptionChain/';
         $accessKey = '40d8790c-266a-40bb-a5fc-7bc38d3dc5ca'; // Replace with your Global Datafeeds API access key
         $exchange = 'NFO';
         $product = 'NIFTY';
