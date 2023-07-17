@@ -178,54 +178,94 @@ class HomeController extends Controller
         }
     }
 
-    public function FinNifty()
-    {
-        $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
+    // public function FinNifty()
+    // {
+    //     $apiEndpoint = 'https://www.nseindia.com/api/option-chain-indices?symbol=FINNIFTY';
 
+    //     try {
+    //         // Initialize cURL session
+    //         $curl = curl_init();
+
+    //         // Set cURL options
+    //         curl_setopt($curl, CURLOPT_URL, $apiEndpoint); // Set the URL
+    //         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // Return the response instead of printing it
+    //         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL verification (not recommended in production)
+
+    //         // Execute the cURL request
+    //         $apiResult = curl_exec($curl);
+
+    //         // Check if the request was successful
+    //         if ($apiResult === false) {
+    //             throw new \Exception('cURL request failed: ' . curl_error($curl));
+    //         }
+
+    //         // Close the cURL session
+    //         curl_close($curl);
+
+    //         // Convert the JSON response to an associative array
+    //         $apiResult = json_decode($apiResult, true);
+
+    //         // Process the option chain data
+    //         $optionChainData = [];
+    //         if (isset($apiResult['records']['data'])) {
+    //             $optionChainData = $apiResult['records']['data'];
+    //         }
+    //         $expiryDate1 = [];
+    //         if (isset($apiResult['records']['expiryDates'])) {
+    //             $expiryDate1 = $apiResult['records']['expiryDates'];
+    //         }
+    //         // Filter the option chain data to include only [PE] array
+    //         $data = array_filter($optionChainData, function ($item) {
+    //             return isset($item['PE']) && isset($item['CE']);
+    //         });
+
+    //         return view('frontend.finnifty', compact('data', 'expiryDate1'));
+    //     } catch (\Exception $e) {
+    //         // Log the exception
+    //         error_log($e->getMessage());
+    //         // Handle the exception if the API request fails
+    //         return view('frontend.finnifty', ['data' => null]);
+    //     }
+    // }
+
+    public function FinNifty(){
+        $apiEndpoint = 'http://nimblerest.lisuns.com:4531/GetLastQuoteOptionChain/?accessKey=988dcf72-de6b-4637-9af7-fddbe9bfa7cd&exchange=NFO&product=FINNIFTY&expiry=01AUG2023';
         try {
-            // Initialize cURL session
             $curl = curl_init();
-
-            // Set cURL options
             curl_setopt($curl, CURLOPT_URL, $apiEndpoint); // Set the URL
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // Return the response instead of printing it
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL verification (not recommended in production)
 
             // Execute the cURL request
             $apiResult = curl_exec($curl);
-
-            // Check if the request was successful
-            if ($apiResult === false) {
-                throw new \Exception('cURL request failed: ' . curl_error($curl));
-            }
-
-            // Close the cURL session
-            curl_close($curl);
+                        curl_close($curl);
 
             // Convert the JSON response to an associative array
             $apiResult = json_decode($apiResult, true);
+            $putArr = [];
+            $callArr = [];
+            
+            foreach($apiResult as $key=>$result){
+                 $identi = explode("_",$result['INSTRUMENTIDENTIFIER']);
+                 
+                 if($identi[3]=="CE"){
+                    array_push($callArr, $result);
+                 }else if($identi[3]=="PE"){
+                    array_push($putArr, $result);
+                 }
 
-            // Process the option chain data
-            $optionChainData = [];
-            if (isset($apiResult['records']['data'])) {
-                $optionChainData = $apiResult['records']['data'];
             }
-            $expiryDate1 = [];
-            if (isset($apiResult['records']['expiryDates'])) {
-                $expiryDate1 = $apiResult['records']['expiryDates'];
-            }
-            // Filter the option chain data to include only [PE] array
-            $data = array_filter($optionChainData, function ($item) {
-                return isset($item['PE']) && isset($item['CE']);
-            });
+           
 
-            return view('frontend.finnifty', compact('data', 'expiryDate1'));
-        } catch (\Exception $e) {
-            // Log the exception
+
+
+             return view('frontend.finnifty',compact('putArr','callArr'));
+        } catch(\Exception $e){
             error_log($e->getMessage());
-            // Handle the exception if the API request fails
             return view('frontend.finnifty', ['data' => null]);
         }
+       
+
     }
 
     public function NiftItSectoral()
