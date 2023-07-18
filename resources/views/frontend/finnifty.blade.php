@@ -10,7 +10,7 @@
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
                 <div>FinNifty- Option Chain</div>
-               
+
             </div>
         </div>
     </div>
@@ -41,37 +41,83 @@
     <div style="text-align: center;">
 
         @if (isset($putArr) && !empty($putArr))
+            <div class="d-flex ">
+                <table>
+                    <thead>
+                        <tr>
+                            <td style="color:green">
+                                <b> Puts</b>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
 
-      <div class="d-flex">
-        <table>
-        <tr>
-            <td>Open Intrest</td>
-        </tr>
-            <?php foreach($putArr as $key=>$value) { ?>
-            
-            <tr>
-            <td>{{$value['OPENINTEREST']}}</td>
-                <td>{{$value['INSTRUMENTIDENTIFIER']}}</td>
-            </tr>
-            <?php } ?>
-        </table>
+                            <th>Open Intrest</th>
+                            <th>OPENINTERESTCHANGE<br> (Change In Oi)</th>
+                            <th>TOTALQTYTRADED<br> (Volume)</th>
+                            <th>PRICECHANGE</th>
+                            <th>LASTTRADEPRICE</th>
+                            <th style="color:#9d007b">STRIKE PRICE</th>
+                        </tr>
+                    </tbody>
+                    <?php foreach($putArr as $key=>$value) { ?>
 
-          <table>
-           <tr>
-            <td>Open Intrest</td>
-        </tr>
-            <?php foreach($callArr as $key=>$value) { ?>
-            
-            <tr>
-             <td>{{$value['OPENINTEREST']}}</td>
-                <td>{{$value['INSTRUMENTIDENTIFIER']}}</td>
-            </tr>
-            <?php } ?>
-        </table>
-        </div>
-    @else
-        <p>No option chain data available</p>
-    @endif
+                    <tr>
+
+                        <td>{{ $value['OPENINTEREST'] }}</td>
+                        <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
+                        <td>{{ $value['TOTALQTYTRADED'] }}</td>
+                        <td>{{ $value['PRICECHANGE'] }}</td>
+                        <td>{{ $value['LASTTRADEPRICE'] }}</td>
+                        <td>{{ $value['value'] }}</td>
+                    </tr>
+                    <?php } ?>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td style="color: red">
+                                <b> Calls</b>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>LASTTRADEPRICE</th>
+                            <th>PRICECHANGE</th>
+                            <th>TOTALQTYTRADED<br> (Volume)</th>
+                            <th>OPENINTERESTCHANGE<br> (Change In Oi)</th>
+                            <th>Open Intrest</th>
+
+
+
+
+
+
+                        </tr>
+                    </tbody>
+                    <?php foreach($callArr as $key=>$value) { ?>
+
+                    <tr>
+
+                        <td>{{ $value['LASTTRADEPRICE'] }}</td>
+                        <td>{{ $value['PRICECHANGE'] }}</td>
+                        <td>{{ $value['TOTALQTYTRADED'] }}</td>
+                        <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
+                        <td>{{ $value['OPENINTEREST'] }}</td>
+
+
+
+
+                    </tr>
+                    <?php } ?>
+                </table>
+            </div>
+        @else
+            <p>No option chain data available</p>
+        @endif
     </div>
 
     <style>
@@ -148,14 +194,14 @@
 
         });
     </script>
-    
+
     <script>
         // JavaScript code to handle table filtering based on selected expiry date
 
-        $("#expiry_date").change(function(){
+        $("#expiry_date").change(function() {
             const selectedOption = $("#expiry_date").val();
             const tableRows = document.querySelectorAll('tbody tr');
-               
+
             tableRows.forEach((row) => {
                 console.log(row);
                 if (row.classList.contains(selectedOption)) {
@@ -165,7 +211,6 @@
                 }
             });
         });
-        
     </script>
 
 

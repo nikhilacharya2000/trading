@@ -228,7 +228,8 @@ class HomeController extends Controller
     //     }
     // }
 
-    public function FinNifty(){
+    public function FinNifty()
+    {
         $apiEndpoint = 'http://nimblerest.lisuns.com:4531/GetLastQuoteOptionChain/?accessKey=988dcf72-de6b-4637-9af7-fddbe9bfa7cd&exchange=NFO&product=FINNIFTY&expiry=01AUG2023';
         try {
             $curl = curl_init();
@@ -238,34 +239,41 @@ class HomeController extends Controller
 
             // Execute the cURL request
             $apiResult = curl_exec($curl);
-                        curl_close($curl);
+            curl_close($curl);
 
             // Convert the JSON response to an associative array
             $apiResult = json_decode($apiResult, true);
             $putArr = [];
             $callArr = [];
-            
-            foreach($apiResult as $key=>$result){
-                 $identi = explode("_",$result['INSTRUMENTIDENTIFIER']);
-                 
-                 if($identi[3]=="CE"){
+
+            foreach ($apiResult as $key => $result) {
+                $identi = explode('_', $result['INSTRUMENTIDENTIFIER']);
+
+                if ($identi[3] == 'CE') {
                     array_push($callArr, $result);
-                 }else if($identi[3]=="PE"){
+                } elseif ($identi[3] == 'PE') {
                     array_push($putArr, $result);
-                 }
-
+                }
             }
-           
 
+            // Extract the desired value from the INSTRUMENTIDENTIFIER
+            $putArr = array_map(function ($item) {
+                $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
+                $item['value'] = end($identi);
+                return $item;
+            }, $putArr);
 
+            $callArr = array_map(function ($item) {
+                $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
+                $item['value'] = end($identi);
+                return $item;
+            }, $callArr);
 
-             return view('frontend.finnifty',compact('putArr','callArr'));
-        } catch(\Exception $e){
+            return view('frontend.finnifty', compact('putArr', 'callArr'));
+        } catch (\Exception $e) {
             error_log($e->getMessage());
             return view('frontend.finnifty', ['data' => null]);
         }
-       
-
     }
 
     public function NiftItSectoral()
@@ -403,41 +411,40 @@ class HomeController extends Controller
     // 3  Marketstack Option_chains Data - Paid Plan (Market Indices) In Add New Key For Testing
 
     public function optionChain()
-{
-    $apiEndpoint = 'http://test.lisuns.com:4531/GetInstruments/';
+    {
+        $apiEndpoint = 'http://test.lisuns.com:4531/GetInstruments/';
 
-    $accessKey = '71d17196-a2cd-4fe2-b494-ff9c44ab2f18';
-    $exchange = 'NFO';
+        $accessKey = '71d17196-a2cd-4fe2-b494-ff9c44ab2f18';
+        $exchange = 'NFO';
 
-    try {
-        // Create a new Guzzle HTTP client
-        $client = new Client();
+        try {
+            // Create a new Guzzle HTTP client
+            $client = new Client();
 
-        // Send the API request
-        $response = $client->get($apiEndpoint, [
-            'query' => [
-                'accessKey' => $accessKey,
-                'exchange' => $exchange,
-            ],
-        ]);
+            // Send the API request
+            $response = $client->get($apiEndpoint, [
+                'query' => [
+                    'accessKey' => $accessKey,
+                    'exchange' => $exchange,
+                ],
+            ]);
 
-        // Get the response body as a string
-        $responseBody = $response->getBody()->getContents();
+            // Get the response body as a string
+            $responseBody = $response->getBody()->getContents();
 
-        // Process the API response
-        $optionChainData = json_decode($responseBody, true);
+            // Process the API response
+            $optionChainData = json_decode($responseBody, true);
 
-        // Display the option chain data
-        echo '<pre>';
-        print_r($optionChainData);
-        echo '</pre>';
-    } catch (\Exception $e) {
-        // Log the exception
-        error_log($e->getMessage());
+            // Display the option chain data
+            echo '<pre>';
+            print_r($optionChainData);
+            echo '</pre>';
+        } catch (\Exception $e) {
+            // Log the exception
+            error_log($e->getMessage());
 
-        // Handle the exception if the API request fails
-        echo 'API request failed: ' . $e->getMessage();
+            // Handle the exception if the API request fails
+            echo 'API request failed: ' . $e->getMessage();
+        }
     }
-}
-
 }
