@@ -1,7 +1,7 @@
  <div class="app-footer">
     <div class="col-12 widget-content bg-premium-dark text-center rounded-top"
     style="bottom: 0; color: #fff; font-weight: bold;padding: 10px;">
-    Developed by Rahul Soni || &nbsp; {{date('Y')}}
+    Developed by Yuv Media || &nbsp; {{date('Y')}}
 </div>
 </div>
 <!-- SlimScroll -->
