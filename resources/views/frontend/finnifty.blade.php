@@ -10,7 +10,6 @@
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
                 <div>FinNifty- Option Chain</div>
-
             </div>
         </div>
     </div>
@@ -22,12 +21,7 @@
                         <label for="expiry_date"><b>Select Expiry:</b></label>
                         <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
                             <option value="" selected>Options</option>
-
-
                             @if (isset($expiryDate1))
-
-
-
                                 @foreach ($expiryDate1 as $option)
                                     <option value="{{ $option }}">{{ date('d-M-Y', strtotime($option)) }}</option>
                                 @endforeach
@@ -39,11 +33,10 @@
         </div>
     </div>
     <div style="text-align: center;">
-
         @if (isset($putArr) && !empty($putArr))
             <div class="d-flex ">
-
                 <table>
+                    <!-- Call options table -->
                     <thead>
                         <tr>
                             <td style="color: red">
@@ -58,36 +51,40 @@
                             <th>TOTALQTYTRADED<br> (Volume)</th>
                             <th>PRICECHANGE</th>
                             <th>LASTTRADEPRICE</th>
-
-
-
-
-
-
                         </tr>
                     </tbody>
-                    <?php foreach($callArr as $key=>$value) { ?>
+                    <?php
+                $totalCallsOpenInterest = 0;
+                $totalCallsOpenInterestChange = 0;
+                $totalCallsTotalQtyTraded = 0;
 
+                foreach ($callArr as $key => $value) {
+                    $totalCallsOpenInterest += $value['OPENINTEREST'];
+                    $totalCallsOpenInterestChange += $value['OPENINTERESTCHANGE'];
+                    $totalCallsTotalQtyTraded += $value['TOTALQTYTRADED'];
+                ?>
                     <tr>
-
                         <td>{{ $value['OPENINTEREST'] }}</td>
                         <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
                         <td>{{ $value['TOTALQTYTRADED'] }}</td>
                         <td>{{ $value['PRICECHANGE'] }}</td>
                         <td>{{ $value['LASTTRADEPRICE'] }}</td>
-
-
-
-
                     </tr>
                     <?php } ?>
+                    <!-- Add a new row to display the total counts for calls -->
+                    <tr>
+                        <td style="color: red"><b>{{ $totalCallsOpenInterest }} oi</b></td>
+                        <td style="color: red"><b>{{ $totalCallsOpenInterestChange }}cioi</b></td>
+                        <td style="color: red"><b>{{ $totalCallsTotalQtyTraded }} </b> Traded </td>
+                        <td style="background-color: #fff;"></td>
+                        <td style="background-color: #fff;"><b></b></td>
+                    </tr>
                 </table>
-
-
                 <table>
+                    <!-- Put options table -->
                     <thead>
                         <tr>
-                            <td style="color:green">
+                            <td style="color: green">
                                 <b> Puts</b>
                             </td>
                         </tr>
@@ -100,17 +97,19 @@
                             <th>TOTALQTYTRADED<br> (Volume)</th>
                             <th>OPENINTERESTCHANGE<br> (Change In Oi)</th>
                             <th>Open Intrest</th>
-
-
-
-
-
                         </tr>
                     </tbody>
-                    <?php foreach($putArr as $key=>$value) { ?>
+                    <?php
+                $totalPutsOpenInterest = 0;
+                $totalPutsOpenInterestChange = 0;
+                $totalPutsTotalQtyTraded = 0;
 
+                foreach ($putArr as $key => $value) {
+                    $totalPutsOpenInterest += $value['OPENINTEREST'];
+                    $totalPutsOpenInterestChange += $value['OPENINTERESTCHANGE'];
+                    $totalPutsTotalQtyTraded += $value['TOTALQTYTRADED'];
+                ?>
                     <tr>
-
                         <td>{{ $value['value'] }}</td>
                         <td>{{ $value['LASTTRADEPRICE'] }}</td>
                         <td>{{ $value['PRICECHANGE'] }}</td>
@@ -119,15 +118,22 @@
                         <td>{{ $value['OPENINTEREST'] }}</td>
                     </tr>
                     <?php } ?>
+                    <!-- Add a new row to display the total counts for puts -->
+                    <tr>
+                        <td style="color: green"><b>-: Total :-</b></td>
+                        <td style="background-color: #fff;"></td>
+
+                        <td style="background-color: #fff;"></td>
+                        <td style="color: green"><b> {{ $totalPutsTotalQtyTraded }} Traded</td>
+                        <td style="color: green"><b>{{ $totalPutsOpenInterestChange }} cioi</b></td>
+                        <td style="color: green"><b>{{ $totalPutsOpenInterest }} oi</b></td>
+                    </tr>
                 </table>
-
-
             </div>
         @else
             <p>No option chain data available</p>
         @endif
     </div>
-
     <style>
         @media screen and (min-width: 768px) {
             #myModal .modal-dialog {
@@ -199,7 +205,6 @@
                 var id = $(this).attr('id');
                 ajax_submit_delete('blogs', id)
             });
-
         });
     </script>
 
@@ -220,8 +225,6 @@
             });
         });
     </script>
-
-
 @endsection
 
 
