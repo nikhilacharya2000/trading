@@ -230,7 +230,7 @@ class HomeController extends Controller
 
     public function FinNifty()
     {
-        $apiEndpoint = 'http://nimblerest.lisuns.com:4531/GetLastQuoteOptionChain/?accessKey=988dcf72-de6b-4637-9af7-fddbe9bfa7cd&exchange=NFO&product=FINNIFTY&expiry=25JUL2023';
+        $apiEndpoint = 'http://nimblerest.lisuns.com:4531/GetLastQuoteOptionChain/?accessKey=988dcf72-de6b-4637-9af7-fddbe9bfa7cd&exchange=NFO&product=FINNIFTY';
         try {
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $apiEndpoint); // Set the URL
