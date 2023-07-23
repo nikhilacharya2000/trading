@@ -6,5 +6,9 @@ Route::get('/banknifty', 'HomeController@BankNifty');
 Route::get('/finnifty', 'HomeController@FinNifty');
 Route::get('/optionChain', 'HomeController@OptionChain');
 Route::get('/niftItSectoral', 'HomeController@NiftItSectoral');
-
 Route::get('/viewNews/{blog}', 'HomeController@viewNews');
+
+
+Route::get('/get-finnfitywithDt/{id}', 'HomeController@getFinNiftywithDt');
+
+
