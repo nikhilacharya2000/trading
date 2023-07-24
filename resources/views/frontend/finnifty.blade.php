@@ -106,6 +106,7 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th style="color:#9d007b">SR</th>
                                 <th style="color:#9d007b">STRIKE PRICE</th>
                                 <th>LASTTRADEPRICE</th>
                                 <th>PRICECHANGE</th>
@@ -128,6 +129,7 @@
                                     $totalPutsTotalQtyTraded += $value['TOTALQTYTRADED'];
                             ?>
                             <tr>
+                                <td>{{ $key + 1 }}</td>
                                 <td>{{ $value['value'] }}</td>
                                 <td>{{ $value['LASTTRADEPRICE'] }}</td>
                                 <td>{{ $value['PRICECHANGE'] }}</td>
@@ -228,7 +230,7 @@
                     console.log(error);
                 }
             });
-             $.ajax({
+            $.ajax({
                 url: '{{ URL::to('get-finnfitywithDt') }}/' + selectedOption,
                 type: 'GET',
                 success: function(response) {
