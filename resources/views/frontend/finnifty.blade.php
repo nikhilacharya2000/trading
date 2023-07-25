@@ -55,7 +55,8 @@
                                     <b> Calls</b>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr>  
+                                <th style="color:#9d007b">SR</th>
                                 <th>Open Intrest</th>
                                 <th>OPENINTERESTCHANGE<br> (Change In Oi)</th>
                                 <th>TOTALQTYTRADED<br> (Volume)</th>
@@ -78,6 +79,7 @@
                             ?>
 
                             <tr>
+                                <td>{{ $key + 1 }}</td>
                                 <td>{{ $value['OPENINTEREST'] }}</td>
                                 <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
                                 <td>{{ $value['TOTALQTYTRADED'] }}</td>
@@ -88,6 +90,7 @@
                             <!-- Add a new row to display the total counts for calls -->
 
                             <tr>
+                               <td style="background-color: #fff;"></td>
                                 <td style="color: red"><b>{{ $totalCallsOpenInterest }} oi</b></td>
                                 <td style="color: red"><b>{{ $totalCallsOpenInterestChange }}cioi</b></td>
                                 <td style="color: red"><b>{{ $totalCallsTotalQtyTraded }} </b> Traded </td>
@@ -106,7 +109,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="color:#9d007b">SR</th>
+                               
                                 <th style="color:#9d007b">STRIKE PRICE</th>
                                 <th>LASTTRADEPRICE</th>
                                 <th>PRICECHANGE</th>
@@ -129,7 +132,7 @@
                                     $totalPutsTotalQtyTraded += $value['TOTALQTYTRADED'];
                             ?>
                             <tr>
-                                <td>{{ $key + 1 }}</td>
+                               
                                 <td>{{ $value['value'] }}</td>
                                 <td>{{ $value['LASTTRADEPRICE'] }}</td>
                                 <td>{{ $value['PRICECHANGE'] }}</td>
@@ -213,6 +216,7 @@
                     let updatedHtml = '<div class="d-flex "><table>';
                     response.callArr.forEach(function(item) {
                         updatedHtml += '<tr>';
+                        updatedHtml += '<td>' + item.$key + '</td>';
                         updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
                         updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
                         updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
