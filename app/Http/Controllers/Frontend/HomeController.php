@@ -244,12 +244,13 @@ class HomeController extends Controller
 
     public function getFinNiftywithDt($id)
     {
-         
+        $starting = request()->query('starting');
+        $ending = request()->query('ending');
         try {
-            $apiEndpoint = 'http://nimblerest.lisuns.com:4531/GetLastQuoteOptionChain/?accessKey=988dcf72-de6b-4637-9af7-fddbe9bfa7cd&exchange=NFO&product=FINNIFTY&expiry=' .$id;
+            $apiEndpoint = 'http://nimblerest.lisuns.com:4531/GetLastQuoteOptionChain/?accessKey=988dcf72-de6b-4637-9af7-fddbe9bfa7cd&exchange=NFO&product=FINNIFTY&expiry=' . $id;
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $apiEndpoint);  
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
+            curl_setopt($curl, CURLOPT_URL, $apiEndpoint);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             $apiResult = curl_exec($curl);
             curl_close($curl);
@@ -268,28 +269,52 @@ class HomeController extends Controller
             }
 
             // Extract the desired value from the INSTRUMENTIDENTIFIER
-            $putArr = array_map(function ($item) {
-                $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
-                $item['value'] = end($identi);
-                return $item;
-            }, $putArr);
 
-            $callArr = array_map(function ($item) {
-                $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
-                $item['value'] = end($identi);
-                return $item;
-            }, $callArr);
+            if ($starting !== null && $ending !== null) {
+                $putArr1 = array_map(
+                    function ($item) {
+                        $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
+                        $item['value'] = end($identi);
+                        return $item;
+                    },
+                    array_filter($putArr, function ($item) use ($starting, $ending) {
+                        $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
+                        return end($identi) >= $starting && end($identi) <= $ending;
+                    }),
+                );
 
-        return response()->json([
-            'putArr' => $putArr,
-            'callArr' => $callArr
-        ]);
+                $callArr1 = array_filter($callArr, function ($item) use ($starting, $ending) {
+                    $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
+                    $item['dd'] = 2;
 
-        } catch (\Exception $e){
-            error_log($e->getMessage());   
+                    return end($identi) >= $starting && end($identi) <= $ending;
+                });
+
+                return response()->json([
+                    'putArr' => array_values($putArr1), // Reset array keys after filtering
+                    'callArr' => array_values($callArr1), // Reset array keys after filtering
+                ]);
+            } else {
+                $putArr = array_map(function ($item) {
+                    $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
+                    $item['value'] = end($identi);
+                    return $item;
+                }, $putArr);
+
+                $callArr = array_map(function ($item) {
+                    $identi = explode('_', $item['INSTRUMENTIDENTIFIER']);
+                    $item['value'] = end($identi);
+                    return $item;
+                }, $callArr);
+
+                return response()->json([
+                    'putArr' => $putArr,
+                    'callArr' => $callArr,
+                ]);
+            }
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
         }
-            
-            
     }
     public function NiftItSectoral()
     {
