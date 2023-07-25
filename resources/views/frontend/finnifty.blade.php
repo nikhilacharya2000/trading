@@ -15,10 +15,20 @@
             </div>
         </div>
     </div>
-    <div class="row">
+
+    
+
+
+
+
+
+
+<div class =  "d-flex">
+
+<div class="row ">
         <div class="col-md-12 col-sm-12">
             <div class="main-card mb-3 card">
-                <div class="card-body">
+                <div class="card-body" style="width: 915px;">
                     <div class="table-responsive">
                         <label for="expiry_date"><b>Select Expiry:</b></label>
                         <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
@@ -37,6 +47,38 @@
             </div>
         </div>
     </div>
+
+    
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body d-flex" style="width: 915px;">
+                    <div class="table-responsive">
+                        <label for="expiry_date"><b>STRIKE PRICE START:</b></label>
+                        <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
+                            <option value="" selected>Options</option>
+                            <option value="" selected>Options</option>
+                            <option value="" selected>Option2</option>
+                            <option value ="" selected>option3</option>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <label for="expiry_date"><b>STRIKE PRICE END:</b></label>
+                        <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
+                            <option value="" selected>Options</option>
+                            <option value="" selected>Option2</option>
+                            <option value ="" selected>option3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
 
 
     <div style="text-align: center;">
@@ -60,7 +102,7 @@
                                 <th>Open Intrest</th>
                                 <th>OPENINTERESTCHANGE<br> (Change In Oi)</th>
                                 <th>TOTALQTYTRADED<br> (Volume)</th>
-                                <th>PRICECHANGE</th>
+                                <th>PRICECHANGE%</th>
                                 <th>LASTTRADEPRICE</th>
                             </tr>
                         </thead>
@@ -83,7 +125,7 @@
                                 <td>{{ $value['OPENINTEREST'] }}</td>
                                 <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
                                 <td>{{ $value['TOTALQTYTRADED'] }}</td>
-                                <td>{{ $value['PRICECHANGE'] }}</td>
+                                <td>{{ $value['PRICECHANGEPERCENTAGE'] }}</td>
                                 <td>{{ $value['LASTTRADEPRICE'] }}</td>
                             </tr>
                             <?php } ?>
@@ -112,7 +154,7 @@
                                
                                 <th style="color:#9d007b">STRIKE PRICE</th>
                                 <th>LASTTRADEPRICE</th>
-                                <th>PRICECHANGE</th>
+                                <th>PRICECHANGE%</th>
                                 <th>TOTALQTYTRADED<br> (Volume)</th>
                                 <th>OPENINTERESTCHANGE<br> (Change In Oi)</th>
                                 <th>Open Intrest</th>
@@ -135,7 +177,7 @@
                                
                                 <td>{{ $value['value'] }}</td>
                                 <td>{{ $value['LASTTRADEPRICE'] }}</td>
-                                <td>{{ $value['PRICECHANGE'] }}</td>
+                                <td>{{ $value['PRICECHANGEPERCENTAGE'] }}</td>
                                 <td>{{ $value['TOTALQTYTRADED'] }}</td>
                                 <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
                                 <td>{{ $value['OPENINTEREST'] }}</td>
@@ -220,7 +262,7 @@
                         updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
                         updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
                         updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGE + '</td>';
+                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
                         updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
                         updatedHtml += '</tr>';
                     });
@@ -243,7 +285,7 @@
                         updatedHtml += '<tr>';
                         updatedHtml += '<td>' + item.value + '</td>';
                         updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGE + '</td>';
+                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
                         updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
                         updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
                         updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
