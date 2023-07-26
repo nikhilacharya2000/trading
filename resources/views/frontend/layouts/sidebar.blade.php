@@ -118,60 +118,10 @@
 
 
 
-                <li>
-                    <a href="{{ URL :: to('/ ') }}">
-                        <i class="metismenu-icon pe-7s-bookmarks"></i>
-                        Marketstack API 
-                        <!-- (https://marketstack.com/) -->
-                    </a>
-                </li>
                 
 
-                <li>
-                    <a href="{{ URL :: to('/optionChain') }}">
-                        <i class="metismenu-icon pe-7s-bookmarks"></i>
-                        Testing- Option Chain
-                        <!-- (https://marketstack.com/) -->
-                    </a>
-                </li>
-                <!-- <li>
-                    <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
-                        Admin Settings
-                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{ URL :: to('/admin/roles') }}">
-                                <i class="metismenu-icon"></i>
-                                Roles
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL :: to('/admin/permissions') }}">
-                                <i class="metismenu-icon"></i>
-                                Permission
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL :: to('/admin/settings') }}">
-                                <i class="metismenu-icon pe-7s-tools"></i>
-                                Settings
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="{{ URL :: to('/admin/backups') }}">
-                                <i class="metismenu-icon pe-7s-download"></i><span>Backup</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li> -->
-                <!-- <li>
-                    <a href="{{ URL :: to('/admin_login/logout') }}">
-                        <i class="metismenu-icon pe-7s-upload"></i>
-                        Logout
-                    </a>
-                </li> -->
+           
+             
             </ul>
         </div>
     </div>
