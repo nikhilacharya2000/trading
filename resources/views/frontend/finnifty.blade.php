@@ -252,7 +252,7 @@
         $("#expiry_date").change(function() {
             const selectedOption = $(this).val();
             $.ajax({
-                url: '{{ URL::to('get-finnfitywithDt') }}/' + selectedOption,
+                url: '{{ URL::to('get-finniftywithDt') }}/' + selectedOption,
                 type: 'GET',
                 success: function(response) {
 
@@ -304,7 +304,7 @@
             let ending = $("#ending").val();
             let selectedDt = $("#expiry_date").val();
             $.ajax({
-                url: '{{ URL::to('get-finnfitywithDt') }}/' + selectedDt,
+                url: '{{ URL::to('get-finniftywithDt') }}/' + selectedDt,
                 type: 'GET',
                 data: {
                     starting: starting,
