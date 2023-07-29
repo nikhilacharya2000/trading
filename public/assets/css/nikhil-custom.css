@@ -1,0 +1,186 @@
+
+
+.nifty-start-title{
+    padding: 10px;
+    margin: -25px 0px 20px;
+    border-bottom:solid ;
+    border-color: black;
+    border-width: 1px;
+}
+.nifty-title-heading{
+    font-size:20px ;
+}
+.nifty-time-head-n{
+    font-size: 25px;
+    color: white;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+.nifty-table-call{
+    margin-left: 20px;
+    border-right: hidden;
+   
+}
+.lable-expiry-date{
+    font-size: 18px;
+    color: white;
+}
+
+.nifty-table-call {
+  border-collapse: separate; /* Add this to remove midline */
+  border-spacing: 0; /* Add this to remove spacing between cells */
+  width: 100%;
+  border-right: hidden; /* Remove right border for the first table */
+}
+.nifty-table-put {
+  border-collapse: separate; /* Add this to remove midline */
+  border-spacing: 0; /* Add this to remove spacing between cells */
+  width: 100%;
+  border-left:  hidden; /* Remove left border for the second table */
+}
+
+ 
+
+/* CSS */
+/* .table-striped>tr:nth-child(odd){
+  background-color:red;
+} */
+/* Add background color to odd rows */
+.nifty-table-call tbody tr:nth-child(odd) {
+  background-color: #121419;
+}
+
+.nifty-table-call tbody tr:nth-child(even) {
+  background-color: #232a34;
+}
+
+.nifty-table-put tbody tr:nth-child(odd) {
+  background-color: #121419;
+}
+.nifty-table-put tbody tr:nth-child(even) {
+  background-color: #232a34;
+}
+
+.nifty-table-call, .nifty-table-put {
+  margin: 0;
+  padding: 0;
+ 
+}
+
+
+
+
+
+
+/* Remove table border and add striped rows */
+.nifty-table-call {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.nifty-table-call th,
+.nifty-table-call td {
+  border: none;
+  padding: 8px;
+}
+.nifty-table-call {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.nifty-table-call th,
+.nifty-table-call td {
+  border: none;
+  padding: 8px;
+}
+
+/* Additional styles to remove cell borders and add spacing between tables */
+.nifty-table-call tbody td {
+  border: none;
+}
+
+.nifty-table-put {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.nifty-table-put th,
+.nifty-table-put td {
+  border: none;
+  padding: 8px;
+}
+
+
+
+
+
+
+
+/* CSS */
+.button-29 {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #ffb020 0, #ffb020 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(153, 138, 53, 0.4) 0 2px 4px,rgba(212, 203, 17, 0.3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 40px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 26px;
+  padding-right: 26px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-29:focus {
+  box-shadow: #ffbc21 0 0 0 1.5px inset, rgba(232, 185, 13, 0.4) 0 2px 4px, rgba(248, 194, 2, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-29:hover {
+  box-shadow: rgba(246, 203, 8, 0.4) 0 4px 8px, rgba(253, 184, 10, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-29:active {
+  box-shadow: #ffd12c 0 3px 7px inset;
+  transform: translateY(2px);
+}
+  
+@media (max-width: 768px) {
+  .nifty-table-call,
+  .nifty-table-put {
+    font-size: 12px;
+  }
+
+  .nifty-time-head-n {
+    font-size: 20px;
+  }
+}
+
+/* Extra small screen styles (up to 576px) */
+@media (max-width: 576px) {
+  .nifty-table-call,
+  .nifty-table-put {
+    font-size: 10px;
+  }
+
+  .nifty-time-head-n {
+    font-size: 18px;
+  }
+}

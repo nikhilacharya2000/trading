@@ -12,6 +12,8 @@
 
 
 <link rel="stylesheet" href="{{ asset('/assets/css/main.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/css/nikhil-custom.css') }}">
+
 
 <!-- Override CSS file - add your own CSS rules -->
 <link rel="stylesheet" href="{{ asset('/assets/css/custom_admin_style.css') }}">

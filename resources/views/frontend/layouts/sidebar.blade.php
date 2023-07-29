@@ -53,7 +53,8 @@
                 </li> -->
                
                 <li>
-                    <a href="#">
+                    <a href="#" style="
+                    color: white;">
                         <i class="metismenu-icon pe-7s-menu"></i>
                         Derivatives (Option-Chain)
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
@@ -81,7 +82,8 @@
 
                 <li>
                     
-                    <a href="#">
+                    <a href="#" style="
+                    color: white;">
                         <i class="metismenu-icon pe-7s-menu"></i>
                         Indices Sectoral
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>

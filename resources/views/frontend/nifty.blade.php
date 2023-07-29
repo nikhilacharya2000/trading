@@ -11,12 +11,48 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div>Nifty- Option Chain</div>
-            </div>
+
+                <div style="display: flex" >
+                    
+                    <div class="col-md-11 col-sm-11" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
+                    <div class="col-md-1 col-sm-1">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body" style="width: 915px;">
+                                <div class="table-responsive">
+                                    <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
+                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="expiry_date">
+                                        <option value="" selected>Options</option>
+                                        @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
+                                            @foreach ($expAray as $index => $option)
+                                                <option value="{{ $option['option'] }}"
+                                                    @if ($option['isUpcomingAfterInitial']) selected @endif>
+                                                    {{ $option['option'] }}
+                                                </option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      
+                
+                </div>
+                 </div>
         </div>
     </div>
 
-
+    <!--<div class="nifty-start-title">
+        <div class="page-title-wrapper">
+            <div class="nifty-title-heading">
+                {{-- <div class="page-title-icon">
+                    <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
+                </div> --}}
+                <div class="nifty-time-head-n" >FINNIFTY OPTION DATA WEEKLY <span style="color: #3f6ad8"> 01-AUG-2023</span> </div>
+            </div>
+        </div>
+    </div>-->
 
 
 
@@ -26,12 +62,12 @@
     <div class="d-flex">
 
         <div class="row ">
-            <div class="col-md-12 col-sm-12">
+            {{-- <div class="col-md-12 col-sm-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body" style="width: 915px;">
                         <div class="table-responsive">
-                            <label for="expiry_date"><b>Select Expiry:</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
+                            <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="expiry_date">
                                 <option value="" selected>Options</option>
                                 @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
                                     @foreach ($expAray as $index => $option)
@@ -45,31 +81,31 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-12 col-sm-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
                         <div class="table-responsive">
-                            <label for="expiry_date"><b> <span style="color:green">START </span> STRIKE PRICE :</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213;" id="starting">
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span> STRIKE PRICE :</b></label>
+                            <select style="width: 234px; height: 37px; color: #a37213; background-color:#121419" id="starting">
                                 <!-- @foreach ($putArr as $key => $value)
-                                    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+    @endforeach -->
 
 
                             </select>
                         </div>
                         <div class="table-responsive">
-                            <label for="expiry_date"><b> <span style="color:red">END </span> STRIKE PRICE :</b></></label>
-                            
-                            <select style="width: 234px; height: 37px; color: #a37213;" id="ending">
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span > STRIKE PRICE :</b></></label>
+
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="ending">
                                 <!-- @foreach ($putArr as $key => $value)
-                                    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+    @endforeach -->
                             </select>
                         </div>
-                        <button type="button"  id="result" class="btn btn-secondary">Result</button>
-                      
+                        <button type="button" id="result" class="button-29">Result</button>
+
                     </div>
                 </div>
             </div>
@@ -85,20 +121,24 @@
 
 
 
-    <div style="text-align: center;">
+    <div style="text-align: center;margin:20px">
         <div class="">
             @if (isset($putArr) && !empty($putArr))
                 <div class="d-flex  ">
-                    <table>
+                    <table class="nifty-table-call table-striped" >
                         <!-- Call options table -->
                         <thead>
+                          
                             <tr>
-                                <td style="color: red">
-                                    <b> Calls</b>
+                               
+                                <td colspan="6" style=" background-color: #232a34;">
+                                    <b style="font-size:16px;float:left;color:white"> Calls Option 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path></svg>
+                                    </b>
                                 </td>
                             </tr>
-                            <tr>
-                                <th style="color:#9d007b">SR</th>
+                            <tr style="color: #6c7687">
+                                <th style="color:#ffffff">SR</th>
                                 <th>Open Intrest</th>
                                 <th>OPENINTERESTCHANGE<br> (Change In Oi)</th>
                                 <th>TOTALQTYTRADED<br> (Volume)</th>
@@ -107,7 +147,7 @@
                             </tr>
                         </thead>
                         <tbody id="updated_call_container"></tbody>
-                        <tbody class="callCurrentData">
+                        <tbody class="callCurrentData" style="color: white">
 
                             <?php
                                 $totalCallsOpenInterest = 0;
@@ -132,27 +172,29 @@
                             <!-- Add a new row to display the total counts for calls -->
 
                             <tr>
-                                <td style="background-color: #fff;"></td>
-                                <td style="color: red"><b>{{ $totalCallsOpenInterest }} oi</b></td>
-                                <td style="color: red"><b>{{ $totalCallsOpenInterestChange }}cioi</b></td>
-                                <td style="color: red"><b>{{ $totalCallsTotalQtyTraded }} </b> Traded </td>
-                                <td style="background-color: #fff;"></td>
-                                <td style="background-color: #fff;"><b></b></td>
+                                <td style="background-color: #121419;">-</td>
+                                <td style="color: #ffb020"><b>{{ $totalCallsOpenInterest }} oi</b></td>
+                                <td style="color: #ffb020"><b>{{ $totalCallsOpenInterestChange }}cioi</b></td>
+                                <td style="color: #ffb020"><b>{{ $totalCallsTotalQtyTraded }} </b> Traded </td>
+                                <td style="background-color: #121419;">-</td>
+                                <td style="background-color: #121419;">-</td>
                             </tr>
 
                         </tbody>
                     </table>
-                    <table>
+                    <table class="nifty-table-put">
                         <!-- Put options table -->
                         <thead>
                             <tr>
-                                <td style="color: green">
-                                    <b> Puts</b>
+                                <td colspan="6" style="color: red;background-color: #232a34;">
+                                    <b style="font-size:16px;float:right;color:white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path></svg>
+                                         Puts Option</b>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="color: #6c7687">
 
-                                <th style="color:#9d007b">STRIKE PRICE</th>
+                                <th style="color:rgb(0, 0, 0);background-color:#ffb020">STRIKE PRICE</th>
                                 <th>LASTTRADEPRICE</th>
                                 <th>PRICECHANGE%</th>
                                 <th>TOTALQTYTRADED<br> (Volume)</th>
@@ -162,7 +204,7 @@
                         </thead>
 
                         <tbody id="updated_put_container"></tbody>
-                        <tbody class="putCurrentData">
+                        <tbody class="putCurrentData" style="color: white">
                             <?php
                                 $totalPutsOpenInterest = 0;
                                 $totalPutsOpenInterestChange = 0;
@@ -173,9 +215,9 @@
                                     $totalPutsOpenInterestChange += $value['OPENINTERESTCHANGE'];
                                     $totalPutsTotalQtyTraded += $value['TOTALQTYTRADED'];
                             ?>
-                            <tr>
+                            <tr style="color: white">
 
-                                <td>{{ $value['value'] }}</td>
+                                <td style="background-color: #22272f;border-bottom:hidden">{{ $value['value'] }}</td>
                                 <td>{{ $value['LASTTRADEPRICE'] }}</td>
                                 <td>{{ $value['PRICECHANGEPERCENTAGE'] }}</td>
                                 <td>{{ $value['TOTALQTYTRADED'] }}</td>
@@ -185,13 +227,13 @@
                             <?php } ?>
                             <!-- Add a new row to display the total counts for puts -->
                             <tr>
-                                <td style="color: green"><b>-: Total :-</b></td>
-                                <td style="background-color: #fff;"></td>
+                                <td style="background-color:#ffb020;;color: #000000;"><b>-: Total :-</b></td>
+                                <td rowspan="2" style="background-color: #121419">-</td>
 
-                                <td style="background-color: #fff;"></td>
-                                <td style="color: green"><b> {{ $totalPutsTotalQtyTraded }} Traded</td>
-                                <td style="color: green"><b>{{ $totalPutsOpenInterestChange }} cioi</b></td>
-                                <td style="color: green"><b>{{ $totalPutsOpenInterest }} oi</b></td>
+                                <td style="background-color: #121419">-</td>
+                                <td style="color: #ffb020"><b> {{ $totalPutsTotalQtyTraded }} Traded</td>
+                                <td style="color: #ffb020"><b>{{ $totalPutsOpenInterestChange }} cioi</b></td>
+                                <td style="color: #ffb020"><b>{{ $totalPutsOpenInterest }} oi</b></td>
                             </tr>
                         </tbody>
                     </table>

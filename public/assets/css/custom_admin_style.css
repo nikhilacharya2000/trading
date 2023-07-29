@@ -16,6 +16,10 @@
 
 .app-header {
     height: 50px;
+    background-color: #121419;
+    border-bottom: solid;
+    border-color: black;
+    border-width: 1px
 }
 
 .app-theme-white.fixed-header .app-header__logo {
@@ -38,6 +42,9 @@
 .app-page-title {
     padding: 10px;
     margin: -25px 0px 20px;
+    border-bottom:solid ;
+    border-color: black;
+    border-width: 1px;
 }
 
 .modal-dialog {
@@ -49,8 +56,9 @@
     font-size: 1.8rem;
     padding: .1rem;
     margin: 0 15px 0 0;
-    width: 45px;
-    height: 45px;
+    margin-top: -40px;
+    width: 38px;
+    height: 37px;
 }
 
 @media only screen and (max-width: 600px) {
