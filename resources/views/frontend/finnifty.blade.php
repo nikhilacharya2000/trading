@@ -163,6 +163,28 @@
                                 <td>{{ $value['PRICECHANGEPERCENTAGE'] }}</td>
                                 <td>{{ $value['LASTTRADEPRICE'] }}</td>
                             </tr>
+
+
+
+                            {{-- 
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>
+                                    {{ $value['OPENINTEREST'] == 0 ? '-' : $value['OPENINTEREST'] }}
+                                </td>
+                                <td>
+                                    {{ $value['OPENINTERESTCHANGE'] == 0 ? '-' : $value['OPENINTERESTCHANGE'] }}
+                                </td>
+
+                                <td>
+                                    {{ $value['TOTALQTYTRADED'] == 0 ? '-' : $value['TOTALQTYTRADED'] }}
+                                </td>
+                                <td> {{ $value['PRICECHANGEPERCENTAGE'] == 0 ? '-' : $value['PRICECHANGEPERCENTAGE'] }}
+                                </td>
+                                <td>{{ $value['LASTTRADEPRICE'] == 0 ? '-' : $value['LASTTRADEPRICE'] }}
+                                </td>
+
+                            </tr> --}}
                             <?php } ?>
                             <!-- Add a new row to display the total counts for calls -->
 
@@ -222,6 +244,26 @@
                                 <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
                                 <td>{{ $value['OPENINTEREST'] }}</td>
                             </tr>
+
+                            {{-- <tr style="color: white">
+
+                                <td style="background-color: #22272f;border-bottom:hidden">{{ $value['value'] }}</td>
+                                <td>
+                                    {{ $value['LASTTRADEPRICE'] == 0 ? '-' : $value['LASTTRADEPRICE'] }}
+                                </td>
+                                <td>
+                                    {{ $value['PRICECHANGEPERCENTAGE'] == 0 ? '-' : $value['PRICECHANGEPERCENTAGE'] }}
+                                </td>
+                                <td>
+                                    {{ $value['TOTALQTYTRADED'] == 0 ? '-' : $value['TOTALQTYTRADED'] }}
+                                </td>
+                                <td>
+                                    {{ $value['OPENINTERESTCHANGE'] == 0 ? '-' : $value['OPENINTERESTCHANGE'] }}
+                                </td>
+                                <td>
+                                    {{ $value['OPENINTEREST'] == 0 ? '-' : $value['OPENINTEREST'] }}
+                                </td>
+                            </tr> --}}
                             <?php } ?>
                             <!-- Add a new row to display the total counts for puts -->
                             <tr>
