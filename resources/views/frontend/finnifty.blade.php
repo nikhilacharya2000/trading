@@ -11,14 +11,15 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div style="display: flex" >
+                <div style="display: flex">
                     <div class="col-md-11 col-sm-11" style="color:white;margin-top:16px">FinNifty- Option Chain</div>
                     <div class="col-md-1 col-sm-1">
                         <div class="main-card mb-3 card">
                             <div class="card-body" style="width: 915px;">
                                 <div class="table-responsive">
                                     <label for="expiry_date"><b>Select Expiry:</b></label>
-                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"" id="expiry_date">
+                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
+                                        id="expiry_date">
                                         <option value="" selected>Options</option>
                                         @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
                                             @foreach ($expAray as $index => $option)
@@ -73,26 +74,30 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span> STRIKE PRICE :</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="starting">
-                                <!-- @foreach ($putArr as $key => $value)
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span>
+                                    STRIKE PRICE :</b></label>
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
+                                id="starting">
+                                @foreach ($putArr as $key => $value)
                                     <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+                                @endforeach
 
 
                             </select>
                         </div>
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span> STRIKE PRICE :</b></></label>
-                            
-                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="ending">
-                                <!-- @foreach ($putArr as $key => $value)
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span> STRIKE
+                                    PRICE :</b></></label>
+
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
+                                id="ending">
+                                @foreach ($putArr as $key => $value)
                                     <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+                                @endforeach
                             </select>
                         </div>
-                        <button type="button"  id="result" class="button-29">Result</button>
-                      
+                        <button type="button" id="result" class="button-29">Result</button>
+
                     </div>
                 </div>
             </div>
@@ -112,15 +117,18 @@
         <div class="">
             @if (isset($putArr) && !empty($putArr))
                 <div class="d-flex  ">
-                    <table class="nifty-table-call table-striped" >
+                    <table class="nifty-table-call table-striped">
                         <!-- Call options table -->
                         <thead>
-                          
+
                             <tr>
-                               
+
                                 <td colspan="6" style=" background-color: #232a34;">
-                                    <b style="font-size:16px;float:left;color:white"> Calls Option 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path></svg>
+                                    <b style="font-size:16px;float:left;color:white"> Calls Option
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path>
+                                        </svg>
                                     </b>
                                 </td>
                             </tr>
@@ -175,8 +183,11 @@
                             <tr>
                                 <td colspan="6" style="color: red;background-color: #232a34;">
                                     <b style="font-size:16px;float:right;color:white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path></svg>
-                                         Puts Option</b>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path>
+                                        </svg>
+                                        Puts Option</b>
                                 </td>
                             </tr>
                             <tr style="color: #6c7687">
@@ -288,7 +299,7 @@
                     let updatedHtml = '<div class="d-flex "><table>';
                     response.callArr.forEach(function(item, key) {
                         updatedHtml += '<tr>';
-                        updatedHtml += '<td>' + key + 1 + '</td>';
+                        updatedHtml += '<td>' + (key + 1) + '</td>';
                         updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
                         updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
                         updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
@@ -411,6 +422,66 @@
                     console.log(updatedHtml1)
                     $("#updated_put_container").html(updatedHtml1);
                     $(".putCurrentData").hide();
+
+
+
+
+
+                    //     ----------------------------------------------------total count final code---------------------------------------
+
+                    // Update the total counts for calls
+                    // let totalCallsOpenInterest = 0;
+                    // let totalCallsOpenInterestChange = 0;
+                    // let totalCallsTotalQtyTraded = 0;
+                    // response.callArr.forEach(function(item) {
+                    //     totalCallsOpenInterest += item.OPENINTEREST;
+                    //     totalCallsOpenInterestChange += item.OPENINTERESTCHANGE;
+                    //     totalCallsTotalQtyTraded += item.TOTALQTYTRADED;
+                    // });
+
+                    // Update the total counts for puts
+                    // let totalPutsOpenInterest = 0;
+                    // let totalPutsOpenInterestChange = 0;
+                    // let totalPutsTotalQtyTraded = 0;
+                    // response.putArr.forEach(function(item) {
+                    //     totalPutsOpenInterest += item.OPENINTEREST;
+                    //     totalPutsOpenInterestChange += item.OPENINTERESTCHANGE;
+                    //     totalPutsTotalQtyTraded += item.TOTALQTYTRADED;
+                    // });
+
+                    // Update the total counts for calls and puts in the table
+                    // let totalCallsHtml = '<tr>';
+                    // totalCallsHtml += '<td></td>';
+                    // totalCallsHtml += '<td>' + totalCallsOpenInterest + ' oi</td>';
+                    // totalCallsHtml += '<td>' + totalCallsOpenInterestChange + ' cioi</td>';
+                    // totalCallsHtml += '<td>' + totalCallsTotalQtyTraded + ' Traded</td>';
+                    // totalCallsHtml += '<td></td>';
+                    // totalCallsHtml += '<td></td>';
+                    // totalCallsHtml += '</tr>';
+
+                    // let totalPutsHtml = '<tr>';
+                    // totalPutsHtml += '<td>-: Total :-</td>';
+                    // totalPutsHtml += '<td></td>';
+                    // totalPutsHtml += '<td></td>';
+                    // totalPutsHtml += '<td>' + totalPutsTotalQtyTraded + ' Traded</td>';
+                    // totalPutsHtml += '<td>' + totalPutsOpenInterestChange + ' cioi</td>';
+                    // totalPutsHtml += '<td>' + totalPutsOpenInterest + ' oi</td>';
+                    // totalPutsHtml += '</tr>';
+
+                    // Append the total counts to the table
+                    $("#updated_call_container").append(totalCallsHtml);
+                    $("#updated_put_container").append(totalPutsHtml);
+
+                    console.log(response);
+
+
+                    //---------------------------------------------------------------------------END---------------------------------------------
+
+
+
+
+
+
                 },
                 error: function(error) {
 
