@@ -341,12 +341,17 @@
                     let updatedHtml = '<div class="d-flex "><table>';
                     response.callArr.forEach(function(item, key) {
                         updatedHtml += '<tr>';
-                        updatedHtml += '<td>' + (key + 1) + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
+
+                        updatedHtml += '<td style="color:white">' + (key + 1) + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTEREST + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.PRICECHANGEPERCENTAGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
                         updatedHtml += '</tr>';
                     });
                     updatedHtml += '</table></div>';
@@ -356,12 +361,19 @@
                     let updatedHtml1 = '<div class="d-flex "><table>';
                     response.putArr.forEach(function(item) {
                         updatedHtml1 += '<tr>';
-                        updatedHtml1 += '<td>' + item.value + '</td>';
-                        updatedHtml1 += '<td>' + item.LASTTRADEPRICE + '</td>';
-                        updatedHtml1 += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml1 += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTEREST + '</td>';
+                        updatedHtml1 +=
+                            '<td style="color:white; background-color: #22272f; border-bottom: hidden;">' +
+                            item.value + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item
+                            .PRICECHANGEPERCENTAGE + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTEREST +
+                            '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
@@ -391,20 +403,26 @@
                     // Update the total counts for calls and puts in the table
                     let totalCallsHtml = '<tr>';
                     totalCallsHtml += '<td></td>';
-                    totalCallsHtml += '<td>' + totalCallsOpenInterest + ' oi</td>';
-                    totalCallsHtml += '<td>' + totalCallsOpenInterestChange + ' cioi</td>';
-                    totalCallsHtml += '<td>' + totalCallsTotalQtyTraded + ' Traded</td>';
+                    totalCallsHtml += '<td style="color: #ffb020"> ' + totalCallsOpenInterest +
+                        ' oi</td>';
+                    totalCallsHtml += '<td  style="color: #ffb020">' + totalCallsOpenInterestChange +
+                        ' cioi</td>';
+                    totalCallsHtml += '<td  style="color: #ffb020">' + totalCallsTotalQtyTraded +
+                        ' Traded</td>';
                     totalCallsHtml += '<td></td>';
                     totalCallsHtml += '<td></td>';
                     totalCallsHtml += '</tr>';
 
                     let totalPutsHtml = '<tr>';
-                    totalPutsHtml += '<td>-: Total :-</td>';
+                    totalPutsHtml +=
+                        '<td style="background-color:#ffb020;;color: #000000;">-: Total :-</td>';
                     totalPutsHtml += '<td></td>';
                     totalPutsHtml += '<td></td>';
-                    totalPutsHtml += '<td>' + totalPutsTotalQtyTraded + ' Traded</td>';
-                    totalPutsHtml += '<td>' + totalPutsOpenInterestChange + ' cioi</td>';
-                    totalPutsHtml += '<td>' + totalPutsOpenInterest + ' oi</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsOpenInterestChange +
+                        ' cioi</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsOpenInterest + ' oi</td>';
                     totalPutsHtml += '</tr>';
 
                     // Append the total counts to the table
