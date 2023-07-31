@@ -146,12 +146,12 @@
                             <!-- Add a new row to display the total counts for calls -->
 
                             <tr>
-                                <td style="background-color: #121419;"></td>
+                                <td style="background-color: #121419;">-</td>
                                 <td style="color: #ffb020"><b>{{ $totalCallsOpenInterest }} oi</b></td>
                                 <td style="color: #ffb020"><b>{{ $totalCallsOpenInterestChange }}cioi</b></td>
                                 <td style="color: #ffb020"><b>{{ $totalCallsTotalQtyTraded }} </b> Traded </td>
-                                <td style="background-color: #121419;"></td>
-                                <td style="background-color: #121419;"><b></b></td>
+                                <td style="background-color: #121419;">-</td>
+                                <td style="background-color: #121419;">-</td>
                             </tr>
 
                         </tbody>

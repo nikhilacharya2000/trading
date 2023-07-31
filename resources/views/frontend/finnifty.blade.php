@@ -17,7 +17,7 @@
                         <div class="main-card mb-3 card">
                             <div class="card-body" style="width: 915px;">
                                 <div class="table-responsive">
-                                    <label for="expiry_date"><b>Select Expiry:</b></label>
+                                    <label for="expiry_date"><b style="color:#d4d2d2">Select Expiry:</b></label>
                                     <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
                                         id="expiry_date">
                                         <option value="" selected>Options</option>
@@ -74,8 +74,12 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span>
-                                    STRIKE PRICE :</b></label>
+                            <label for="expiry_date">
+                                <b style="color: #d4d2d2">
+                                    <span style="color:green">START </span>
+                                    STRIKE PRICE :
+                                </b>
+                            </label>
                             <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
                                 id="starting">
                                 @foreach ($putArr as $key => $value)
@@ -86,7 +90,7 @@
                             </select>
                         </div>
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span> STRIKE
+                            <label for="expiry_date"><b style="color: #d4d2d2"> <span style="color:red">END </span> STRIKE
                                     PRICE :</b></></label>
 
                             <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
@@ -189,12 +193,12 @@
                             <!-- Add a new row to display the total counts for calls -->
 
                             <tr>
-                                <td style="background-color: #121419;">-</td>
+                                <td style="background-color: background-color: #121419;">-</td>
                                 <td style="color: #ffb020"><b>{{ $totalCallsOpenInterest }} oi</b></td>
                                 <td style="color: #ffb020"><b>{{ $totalCallsOpenInterestChange }}cioi</b></td>
                                 <td style="color: #ffb020"><b>{{ $totalCallsTotalQtyTraded }} </b> Traded </td>
-                                <td style="background-color: #121419;">-</td>
-                                <td style="background-color: #121419;">-</td>
+                                <td style="background-color: background-color: #121419;">-</td>
+                                <td style="background-color: background-color: #121419;">-</td>
                             </tr>
 
                         </tbody>
@@ -268,9 +272,9 @@
                             <!-- Add a new row to display the total counts for puts -->
                             <tr>
                                 <td style="background-color:#ffb020;;color: #000000;"><b>-: Total :-</b></td>
-                                <td rowspan="2" style="background-color: #121419">-</td>
+                                <td rowspan="2" style="background-color: #232a34">-</td>
 
-                                <td style="background-color: #121419">-</td>
+                                <td style="background-color: #232a34">-</td>
                                 <td style="color: #ffb020"><b> {{ $totalPutsTotalQtyTraded }} Traded</td>
                                 <td style="color: #ffb020"><b>{{ $totalPutsOpenInterestChange }} cioi</b></td>
                                 <td style="color: #ffb020"><b>{{ $totalPutsOpenInterest }} oi</b></td>
@@ -409,15 +413,15 @@
                         ' cioi</td>';
                     totalCallsHtml += '<td  style="color: #ffb020">' + totalCallsTotalQtyTraded +
                         ' Traded</td>';
-                    totalCallsHtml += '<td></td>';
-                    totalCallsHtml += '<td></td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
                     totalCallsHtml += '</tr>';
 
                     let totalPutsHtml = '<tr>';
                     totalPutsHtml +=
                         '<td style="background-color:#ffb020;;color: #000000;">-: Total :-</td>';
-                    totalPutsHtml += '<td></td>';
-                    totalPutsHtml += '<td></td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
                     totalPutsHtml += '<td style="color: #ffb020">' + totalPutsTotalQtyTraded +
                         ' Traded</td>';
                     totalPutsHtml += '<td style="color: #ffb020">' + totalPutsOpenInterestChange +
@@ -475,8 +479,7 @@
                         updatedHtml1 += '<tr>';
                         updatedHtml1 +=
                             '<td  style="color:white; background-color: #22272f; border-bottom: hidden;" >' +
-                            item
-                            .value + '</td>';
+                            item.value + '</td>';
                         updatedHtml1 += '<td style="color:white">' + item.LASTTRADEPRICE +
                             '</td>';
                         updatedHtml1 += '<td style="color:white">' + item
@@ -486,7 +489,7 @@
                         updatedHtml1 += '<td style="color:white">' + item.OPENINTERESTCHANGE +
                             '</td>';
                         updatedHtml1 += '<td style="color:white">' + item.OPENINTEREST +
-                            '</td>';
+                        '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
@@ -523,22 +526,22 @@
 
                     // Update the total counts for calls and puts in the table
                     let totalCallsHtml = '<tr>';
-                    totalCallsHtml += '<td></td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
                     totalCallsHtml += '<td style="color:#ffb020">' + totalCallsOpenInterest +
                         ' oi</td>';
                     totalCallsHtml += '<td style="color:#ffb020">' + totalCallsOpenInterestChange +
                         ' cioi</td>';
                     totalCallsHtml += '<td style="color:#ffb020">' + totalCallsTotalQtyTraded +
                         ' Traded</td>';
-                    totalCallsHtml += '<td></td>';
-                    totalCallsHtml += '<td></td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
                     totalCallsHtml += '</tr>';
 
                     let totalPutsHtml = '<tr>';
                     totalPutsHtml +=
                         '<td style="background-color:#ffb020;;color: #000000;">-: Total :-</td>';
-                    totalPutsHtml += '<td></td>';
-                    totalPutsHtml += '<td></td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
                     totalPutsHtml += '<td style="color:#ffb020">' + totalPutsTotalQtyTraded +
                         ' Traded</td>';
                     totalPutsHtml += '<td style="color:#ffb020">' + totalPutsOpenInterestChange +
