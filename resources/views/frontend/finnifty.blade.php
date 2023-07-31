@@ -9,7 +9,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
+                    <i class="pe-7s-graph1"> </i>
                 </div>
                 <div style="display: flex">
                     <div class="col-md-11 col-sm-11" style="color:white;margin-top:16px">FinNifty- Option Chain</div>
@@ -489,7 +489,7 @@
                         updatedHtml1 += '<td style="color:white">' + item.OPENINTERESTCHANGE +
                             '</td>';
                         updatedHtml1 += '<td style="color:white">' + item.OPENINTEREST +
-                        '</td>';
+                            '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
