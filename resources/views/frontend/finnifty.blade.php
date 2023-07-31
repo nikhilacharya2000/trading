@@ -17,7 +17,7 @@
                         <div class="main-card mb-3 card">
                             <div class="card-body" style="width: 915px;">
                                 <div class="table-responsive">
-                                    <label for="expiry_date"><b>Select Expiry:</b></label>
+                                    <label for="expiry_date" class="lable-expiry-date"><b>Select Expiry:</b></label>
                                     <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"" id="expiry_date">
                                         <option value="" selected>Options</option>
                                         @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)

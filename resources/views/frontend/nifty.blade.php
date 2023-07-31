@@ -5,7 +5,7 @@
     <?php
     use Carbon\Carbon;
     ?>
-    <div class="app-page-title">
+    {{-- <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
@@ -14,34 +14,50 @@
 
                 <div style="display: flex" >
                     
-                    <div class="col-md-11 col-sm-11" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
-                    <div class="col-md-1 col-sm-1">
-                        <div class="main-card mb-3 card">
-                            <div class="card-body" style="width: 915px;">
-                                <div class="table-responsive">
-                                    <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
-                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="expiry_date">
-                                        <option value="" selected>Options</option>
-                                        @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
-                                            @foreach ($expAray as $index => $option)
-                                                <option value="{{ $option['option'] }}"
-                                                    @if ($option['isUpcomingAfterInitial']) selected @endif>
-                                                    {{ $option['option'] }}
-                                                </option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-6 col-sm-6" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
+                    <div class="col-md-6 col-sm-6" style="float:right">
+                        NIkhil
                     </div>
 
-                      
                 
                 </div>
                  </div>
         </div>
+    </div> --}}
+
+
+
+    <div style="display: flex" >
+                    
+        <div class="col-md-6 col-sm-6 page-title-heading" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
+        <div class="col-md-6 col-sm-6" style="float:right">
+            
+                      {{--  --}}
+                      <div class="main-card mb-3 card">
+                        <div class="card-body" >
+                            <div class="table-responsive">
+                                <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
+                                <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="expiry_date">
+                                    <option value="" selected>Options</option>
+                                    @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
+                                        @foreach ($expAray as $index => $option)
+                                            <option value="{{ $option['option'] }}"
+                                                @if ($option['isUpcomingAfterInitial']) selected @endif>
+                                                {{ $option['option'] }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                      {{--  --}}
+        </div>
+
+    
     </div>
+
+
 
     <!--<div class="nifty-start-title">
         <div class="page-title-wrapper">
@@ -59,7 +75,7 @@
 
 
 
-    <div class="d-flex">
+    <div class="d-flex " style="overflow-x: scroll">
 
         <div class="row ">
             {{-- <div class="col-md-12 col-sm-12">
@@ -124,8 +140,10 @@
     <div style="text-align: center;margin:20px">
         <div class="">
             @if (isset($putArr) && !empty($putArr))
-                <div class="d-flex  ">
-                    <table class="nifty-table-call table-striped" >
+                <div class="d-flex  "style="
+                overflow-x: scroll;
+            ">
+                    <table class="nifty-table-call table-striped"  >
                         <!-- Call options table -->
                         <thead>
                           
