@@ -60,9 +60,9 @@
                                     STRIKE PRICE :</b></label>
                             <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
                                 id="starting">
-                                <!-- @foreach ($putArr as $key => $value)
-    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-    @endforeach -->
+                                @foreach ($putArr as $key => $value)
+                                    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+                                @endforeach
 
 
                             </select>
@@ -73,9 +73,9 @@
 
                             <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
                                 id="ending">
-                                <!-- @foreach ($putArr as $key => $value)
-    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-    @endforeach -->
+                                @foreach ($putArr as $key => $value)
+                                    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <button type="button" id="result" class="button-29">Result</button>
@@ -278,12 +278,17 @@
                     let updatedHtml = '<div class="d-flex "><table>';
                     response.callArr.forEach(function(item, key) {
                         updatedHtml += '<tr>';
-                        updatedHtml += '<td>' + (key + 1) + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
+
+                        updatedHtml += '<td style="color:white">' + (key + 1) + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTEREST + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.PRICECHANGEPERCENTAGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
                         updatedHtml += '</tr>';
                     });
                     updatedHtml += '</table></div>';
@@ -293,12 +298,19 @@
                     let updatedHtml1 = '<div class="d-flex "><table>';
                     response.putArr.forEach(function(item) {
                         updatedHtml1 += '<tr>';
-                        updatedHtml1 += '<td>' + item.value + '</td>';
-                        updatedHtml1 += '<td>' + item.LASTTRADEPRICE + '</td>';
-                        updatedHtml1 += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml1 += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTEREST + '</td>';
+                        updatedHtml1 +=
+                            '<td style="color:white; background-color: #22272f; border-bottom: hidden;">' +
+                            item.value + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item
+                            .PRICECHANGEPERCENTAGE + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTEREST +
+                            '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
@@ -328,20 +340,26 @@
                     // Update the total counts for calls and puts in the table
                     let totalCallsHtml = '<tr>';
                     totalCallsHtml += '<td></td>';
-                    totalCallsHtml += '<td>' + totalCallsOpenInterest + ' oi</td>';
-                    totalCallsHtml += '<td>' + totalCallsOpenInterestChange + ' cioi</td>';
-                    totalCallsHtml += '<td>' + totalCallsTotalQtyTraded + ' Traded</td>';
-                    totalCallsHtml += '<td></td>';
-                    totalCallsHtml += '<td></td>';
+                    totalCallsHtml += '<td style="color: #ffb020"> ' + totalCallsOpenInterest +
+                        ' oi</td>';
+                    totalCallsHtml += '<td  style="color: #ffb020">' + totalCallsOpenInterestChange +
+                        ' cioi</td>';
+                    totalCallsHtml += '<td  style="color: #ffb020">' + totalCallsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
                     totalCallsHtml += '</tr>';
 
                     let totalPutsHtml = '<tr>';
-                    totalPutsHtml += '<td>-: Total :-</td>';
-                    totalPutsHtml += '<td></td>';
-                    totalPutsHtml += '<td></td>';
-                    totalPutsHtml += '<td>' + totalPutsTotalQtyTraded + ' Traded</td>';
-                    totalPutsHtml += '<td>' + totalPutsOpenInterestChange + ' cioi</td>';
-                    totalPutsHtml += '<td>' + totalPutsOpenInterest + ' oi</td>';
+                    totalPutsHtml +=
+                        '<td style="background-color:#ffb020;;color: #000000;">-: Total :-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsOpenInterestChange +
+                        ' cioi</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsOpenInterest + ' oi</td>';
                     totalPutsHtml += '</tr>';
 
                     // Append the total counts to the table
@@ -373,12 +391,16 @@
                     response.callArr.forEach(function(item, key) {
                         console.log(item)
                         updatedHtml += '<tr>';
-                        updatedHtml += '<td>' + parseInt(key + 1) + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
+                        updatedHtml += '<td style="color:white">' + parseInt(key + 1) + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTEREST + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.PRICECHANGEPERCENTAGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
                         updatedHtml += '</tr>';
                     });
                     updatedHtml += '</table></div>';
@@ -388,12 +410,19 @@
                     let updatedHtml1 = '<div class="d-flex "><table>';
                     response.putArr.forEach(function(item) {
                         updatedHtml1 += '<tr>';
-                        updatedHtml1 += '<td>' + item.value + '</td>';
-                        updatedHtml1 += '<td>' + item.LASTTRADEPRICE + '</td>';
-                        updatedHtml1 += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml1 += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTEREST + '</td>';
+                        updatedHtml1 +=
+                            '<td  style="color:white; background-color: #22272f; border-bottom: hidden;" >' +
+                            item.value + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item
+                            .PRICECHANGEPERCENTAGE + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTEREST +
+                            '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
@@ -401,6 +430,71 @@
                     console.log(updatedHtml1)
                     $("#updated_put_container").html(updatedHtml1);
                     $(".putCurrentData").hide();
+
+
+                    //     ----------------------------------------------------total count final code---------------------------------------
+
+                    // Update the total counts for calls
+                    let totalCallsOpenInterest = 0;
+                    let totalCallsOpenInterestChange = 0;
+                    let totalCallsTotalQtyTraded = 0;
+                    response.callArr.forEach(function(item) {
+                        totalCallsOpenInterest += item.OPENINTEREST;
+                        totalCallsOpenInterestChange += item.OPENINTERESTCHANGE;
+                        totalCallsTotalQtyTraded += item.TOTALQTYTRADED;
+                    });
+
+                    // Update the total counts for puts
+                    let totalPutsOpenInterest = 0;
+                    let totalPutsOpenInterestChange = 0;
+                    let totalPutsTotalQtyTraded = 0;
+                    response.putArr.forEach(function(item) {
+                        totalPutsOpenInterest += item.OPENINTEREST;
+                        totalPutsOpenInterestChange += item.OPENINTERESTCHANGE;
+                        totalPutsTotalQtyTraded += item.TOTALQTYTRADED;
+                    });
+
+                    // Update the total counts for calls and puts in the table
+                    let totalCallsHtml = '<tr>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:#ffb020">' + totalCallsOpenInterest +
+                        ' oi</td>';
+                    totalCallsHtml += '<td style="color:#ffb020">' + totalCallsOpenInterestChange +
+                        ' cioi</td>';
+                    totalCallsHtml += '<td style="color:#ffb020">' + totalCallsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '</tr>';
+
+                    let totalPutsHtml = '<tr>';
+                    totalPutsHtml +=
+                        '<td style="background-color:#ffb020;;color: #000000;">-: Total :-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:#ffb020">' + totalPutsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalPutsHtml += '<td style="color:#ffb020">' + totalPutsOpenInterestChange +
+                        ' cioi</td>';
+                    totalPutsHtml += '<td style="color:#ffb020">' + totalPutsOpenInterest + ' oi</td>';
+                    totalPutsHtml += '</tr>';
+
+                    // Append the total counts to the table
+                    $("#updated_call_container").append(totalCallsHtml);
+                    $("#updated_put_container").append(totalPutsHtml);
+
+                    console.log(response);
+
+
+                    //---------------------------------------------------------------------------END---------------------------------------------
+
+
+
+
+
+
+
+
                 },
                 error: function(error) {
 
