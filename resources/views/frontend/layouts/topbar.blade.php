@@ -1,13 +1,11 @@
 <div class="app-header">
-    <div class="app-header__logo" style="
-    border-right: solid;
-    margin-right: 51px;
-    width: 280px;
-    padding-left: 22px;
-    border-color:black;
-    border-width:1px;
-">
-        <div class="logo-src"><h4 style="text-align:left;font-weight: bold;line-height:20px;color:white">Trading</h4></div>
+    <div class="app-header__logo" style="  border-right: solid; margin-right: 51px;   width: 280px;  padding-left: 22px;  border-color:black;  border-width:1px;">
+        <div class="logo-src" style="
+    font-size: 31px;
+    font-family: cursive;
+    color: lightseagreen;
+    margin-top: -25px;
+">SCALPING </div>
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
