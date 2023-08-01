@@ -11,7 +11,7 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-graph1"> </i>
                 </div>
-                <div style="display: flex" >
+                <div style="display: flex">
                     <div class="col-md-11 col-sm-11" style="color:white;margin-top:16px">FinNifty- Option Chain</div>
                     <div class="col-md-1 col-sm-1">
                         <div class="main-card mb-3 card">
@@ -50,7 +50,26 @@
     <div class="d-flex" style="overflow-x: scroll">
 
         <div class="row ">
-          
+            {{-- <div class="col-md-12 col-sm-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body" style="width: 915px;">
+                        <div class="table-responsive">
+                            <label for="expiry_date"><b>Select Expiry:</b></label>
+                            <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
+                                <option value="" selected>Options</option>
+                                @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
+                                    @foreach ($expAray as $index => $option)
+                                        <option value="{{ $option['option'] }}"
+                                            @if ($option['isUpcomingAfterInitial']) selected @endif>
+                                            {{ $option['option'] }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
             <div class="col-md-12 col-sm-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
@@ -65,7 +84,7 @@
                                 id="starting">
                                 @foreach ($putArr as $key => $value)
                                     <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+                                @endforeach
 
 
                             </select>
@@ -78,11 +97,11 @@
                                 id="ending">
                                 @foreach ($putArr as $key => $value)
                                     <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+                                @endforeach
                             </select>
                         </div>
-                        <button type="button"  id="result" class="button-29">Result</button>
-                      
+                        <button type="button" id="result" class="button-29">Result</button>
+
                     </div>
                 </div>
             </div>
@@ -102,15 +121,18 @@
         <div class="">
             @if (isset($putArr) && !empty($putArr))
                 <div class="d-flex  ">
-                    <table class="nifty-table-call table-striped" >
+                    <table class="nifty-table-call table-striped">
                         <!-- Call options table -->
                         <thead>
-                          
+
                             <tr>
-                               
+
                                 <td colspan="6" style=" background-color: #232a34;">
-                                    <b style="font-size:16px;float:left;color:white"> Calls Option 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path></svg>
+                                    <b style="font-size:16px;float:left;color:white"> Calls Option
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path>
+                                        </svg>
                                     </b>
                                 </td>
                             </tr>
@@ -145,6 +167,28 @@
                                 <td>{{ $value['PRICECHANGEPERCENTAGE'] }}</td>
                                 <td>{{ $value['LASTTRADEPRICE'] }}</td>
                             </tr>
+
+
+
+                            {{-- 
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>
+                                    {{ $value['OPENINTEREST'] == 0 ? '-' : $value['OPENINTEREST'] }}
+                                </td>
+                                <td>
+                                    {{ $value['OPENINTERESTCHANGE'] == 0 ? '-' : $value['OPENINTERESTCHANGE'] }}
+                                </td>
+
+                                <td>
+                                    {{ $value['TOTALQTYTRADED'] == 0 ? '-' : $value['TOTALQTYTRADED'] }}
+                                </td>
+                                <td> {{ $value['PRICECHANGEPERCENTAGE'] == 0 ? '-' : $value['PRICECHANGEPERCENTAGE'] }}
+                                </td>
+                                <td>{{ $value['LASTTRADEPRICE'] == 0 ? '-' : $value['LASTTRADEPRICE'] }}
+                                </td>
+
+                            </tr> --}}
                             <?php } ?>
                             <!-- Add a new row to display the total counts for calls -->
 
@@ -165,8 +209,11 @@
                             <tr>
                                 <td colspan="6" style="color: red;background-color: #232a34;">
                                     <b style="font-size:16px;float:right;color:white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path></svg>
-                                         Puts Option</b>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path>
+                                        </svg>
+                                        Puts Option</b>
                                 </td>
                             </tr>
                             <tr style="color: #6c7687">
@@ -201,6 +248,26 @@
                                 <td>{{ $value['OPENINTERESTCHANGE'] }}</td>
                                 <td>{{ $value['OPENINTEREST'] }}</td>
                             </tr>
+
+                            {{-- <tr style="color: white">
+
+                                <td style="background-color: #22272f;border-bottom:hidden">{{ $value['value'] }}</td>
+                                <td>
+                                    {{ $value['LASTTRADEPRICE'] == 0 ? '-' : $value['LASTTRADEPRICE'] }}
+                                </td>
+                                <td>
+                                    {{ $value['PRICECHANGEPERCENTAGE'] == 0 ? '-' : $value['PRICECHANGEPERCENTAGE'] }}
+                                </td>
+                                <td>
+                                    {{ $value['TOTALQTYTRADED'] == 0 ? '-' : $value['TOTALQTYTRADED'] }}
+                                </td>
+                                <td>
+                                    {{ $value['OPENINTERESTCHANGE'] == 0 ? '-' : $value['OPENINTERESTCHANGE'] }}
+                                </td>
+                                <td>
+                                    {{ $value['OPENINTEREST'] == 0 ? '-' : $value['OPENINTEREST'] }}
+                                </td>
+                            </tr> --}}
                             <?php } ?>
                             <!-- Add a new row to display the total counts for puts -->
                             <tr>
@@ -278,12 +345,17 @@
                     let updatedHtml = '<div class="d-flex "><table>';
                     response.callArr.forEach(function(item, key) {
                         updatedHtml += '<tr>';
-                        updatedHtml += '<td>' + key + 1 + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
+
+                        updatedHtml += '<td style="color:white">' + (key + 1) + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTEREST + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.PRICECHANGEPERCENTAGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
                         updatedHtml += '</tr>';
                     });
                     updatedHtml += '</table></div>';
@@ -293,12 +365,19 @@
                     let updatedHtml1 = '<div class="d-flex "><table>';
                     response.putArr.forEach(function(item) {
                         updatedHtml1 += '<tr>';
-                        updatedHtml1 += '<td>' + item.value + '</td>';
-                        updatedHtml1 += '<td>' + item.LASTTRADEPRICE + '</td>';
-                        updatedHtml1 += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml1 += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTEREST + '</td>';
+                        updatedHtml1 +=
+                            '<td style="color:white; background-color: #22272f; border-bottom: hidden;">' +
+                            item.value + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item
+                            .PRICECHANGEPERCENTAGE + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTEREST +
+                            '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
