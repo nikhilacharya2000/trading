@@ -47,29 +47,10 @@
 
 
 
-    <div class="d-flex">
+    <div class="d-flex" style="overflow-x: scroll">
 
         <div class="row ">
-            {{-- <div class="col-md-12 col-sm-12">
-                <div class="main-card mb-3 card">
-                    <div class="card-body" style="width: 915px;">
-                        <div class="table-responsive">
-                            <label for="expiry_date"><b>Select Expiry:</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213;" id="expiry_date">
-                                <option value="" selected>Options</option>
-                                @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
-                                    @foreach ($expAray as $index => $option)
-                                        <option value="{{ $option['option'] }}"
-                                            @if ($option['isUpcomingAfterInitial']) selected @endif>
-                                            {{ $option['option'] }}
-                                        </option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+          
             <div class="col-md-12 col-sm-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">

@@ -14162,7 +14162,7 @@ legend {
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .ps {
-        overflow: auto !important;
+        overflow: scroll !important;
     }
 }
 .scrollbar-sidebar,

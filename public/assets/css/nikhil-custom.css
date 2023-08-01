@@ -1,4 +1,17 @@
 
+html,body
+{
+   
+    overflow-x: hidden; 
+} 
+::-webkit-scrollbar {
+  display: none;
+}
+.logo-scalping{
+  position: absolute;
+    width: 205px;
+    top: -7px;
+}
 
 .nifty-start-title{
     padding: 10px;
@@ -182,5 +195,18 @@
 
   .nifty-time-head-n {
     font-size: 18px;
+  }
+}
+
+
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Add media query to ensure responsiveness for larger screens */
+@media (min-width: 1200px) {
+  .table-responsive {
+    overflow-x: hidden;
   }
 }
