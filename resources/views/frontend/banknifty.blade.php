@@ -5,6 +5,12 @@
     <?php
     use Carbon\Carbon;
     ?>
+
+
+
+
+    {{-- -----------------------------------------------------------------------------------------------------Expiry Date Function  --}}
+
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
@@ -43,6 +49,8 @@
 
 
 
+
+    {{-- -----------------------------------------------------------------------------------------------------Strike Range Function  --}}
 
 
 
@@ -99,6 +107,12 @@
         <div class="">
             @if (isset($putArr) && !empty($putArr))
                 <div class="d-flex  ">
+
+
+
+                    {{-- -------------------------------------------------------------------------------------------------------------------------------Calls Table Function  --}}
+
+
                     <table class="nifty-table-call table-striped">
                         <!-- Call options table -->
                         <thead>
@@ -156,6 +170,11 @@
 
                         </tbody>
                     </table>
+
+
+                    {{-- --------------------------------------------------------------------------------------------------------------------------------Puts Table Function  --}}
+
+
                     <table class="nifty-table-put">
                         <!-- Put options table -->
                         <thead>
@@ -214,10 +233,66 @@
                             </tr>
                         </tbody>
                     </table>
+
+
+
+
+
+
                 </div>
             @else
                 <p>No option chain data available</p>
             @endif
+
+            <div>
+                {{-- --------------------------------------------------------------------------------------------------------------Calculate PCR and PCR strength --}}
+
+                <?php
+                function calculatePCRStrength($totalCallsOpenInterest, $totalPutsOpenInterest)
+                {
+                    $PCR = $totalCallsOpenInterest / $totalPutsOpenInterest;
+                
+                    if ($PCR > 3) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Strong Bullish (Strong Support)'];
+                    } elseif ($PCR >= 1.5 && $PCR <= 3) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Bullish'];
+                    } elseif ($PCR >= 0.5 && $PCR < 1.5) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Neutral'];
+                    } elseif ($PCR >= 0.33 && $PCR < 0.5) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Bearish'];
+                    } else {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Strong Bearish (Strong Resistance)'];
+                    }
+                }
+                
+                // Assuming you have already calculated $totalCallsOpenInterest and $totalPutsOpenInterest
+                
+                // -----Calculate PCR and PCR strength
+                $PCRData = calculatePCRStrength($totalCallsOpenInterest, $totalPutsOpenInterest);
+                $PCR = $PCRData['PCR'];
+                $PCRStrength = $PCRData['PCRStrength'];
+                
+                ?>
+
+
+
+                <!-- -------------------------------------------------------------------------------------------------------------Display the data in another table -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="color:#ffffff;background:#ffb020">PCR</th>
+                            <th style="color:#ffffff;background:#ffb020">PCR Strength</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color:#ffffff;"><?php echo $PCR; ?></td>
+                            <td style="color:#ffffff;"><?php echo $PCRStrength; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
     <style>
@@ -267,6 +342,10 @@
             });
         });
     </script>
+
+
+    {{-- ------------------------------------------------------------------------------------------------------------------------------------------------Expiry Date Function --}}
+
     <script type="text/javascript">
         $("#expiry_date").change(function() {
             const selectedOption = $(this).val();
@@ -374,6 +453,9 @@
             });
         });
 
+
+
+        // ----------------------------------------------------------------------------------------------------------------------------------- Strike Price  Range 
 
         $("#result").click(function(e) {
             let starting = $("#starting").val();
