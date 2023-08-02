@@ -17,7 +17,8 @@
         <div>
             <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                         <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
+                            <div> <img class="logo-scalping-mobile" src="assets/images/newlogo.png" alt="Image"><span class="hamburger-inner"></span><div>
+                            
                         </span>
             </button>
         </div>

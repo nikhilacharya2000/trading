@@ -5,77 +5,62 @@
     <?php
     use Carbon\Carbon;
     ?>
-    {{-- <div class="app-page-title">
+    <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
                     <i class="pe-7s-graph1"> </i>
                 </div>
 
-                <div style="display: flex" >
-                    
-                    <div class="col-md-6 col-sm-6" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
-                    <div class="col-md-6 col-sm-6" style="float:right">
-                        NIkhil
-                    </div>
+                <div style="display: flex">
 
-                
-                </div>
-                 </div>
-        </div>
-    </div> --}}
-
-
-
-    <div style="display: flex" >
-                    
-        <div class="col-md-6 col-sm-6 page-title-heading" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
-        <div class="col-md-6 col-sm-6" style="float:right">
-            
-                      {{--  --}}
-                      <div class="main-card mb-3 card">
-                        <div class="card-body" >
-                            <div class="table-responsive">
-                                <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
-                                <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="expiry_date">
-                                    <option value="" selected>Options</option>
-                                    @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
-                                        @foreach ($expAray as $index => $option)
-                                            <option value="{{ $option['option'] }}"
-                                                @if ($option['isUpcomingAfterInitial']) selected @endif>
-                                                {{ $option['option'] }}
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                    <div class="col-md-11 col-sm-11" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
+                    <div class="col-md-1 col-sm-1">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body" style="width: 915px;">
+                                <div class="table-responsive">
+                                    <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
+                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
+                                        id="expiry_date">
+                                        <option value="" selected>Options</option>
+                                        @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
+                                            @foreach ($expAray as $index => $option)
+                                                <option value="{{ $option['option'] }}"
+                                                    @if ($option['isUpcomingAfterInitial']) selected @endif>
+                                                    {{ $option['option'] }}
+                                                </option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                      {{--  --}}
-        </div>
-
-    
-    </div>
 
 
 
-    <!--<div class="nifty-start-title">
-        <div class="page-title-wrapper">
-            <div class="nifty-title-heading">
-                {{-- <div class="page-title-icon">
-                    <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
-                </div> --}}
-                <div class="nifty-time-head-n" >FINNIFTY OPTION DATA WEEKLY <span style="color: #3f6ad8"> 01-AUG-2023</span> </div>
+                </div>
             </div>
         </div>
-    </div>-->
+    </div>
+
+    <!--<div class="nifty-start-title">
+            <div class="page-title-wrapper">
+                <div class="nifty-title-heading">
+                    {{-- <div class="page-title-icon">
+                    <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
+                </div> --}}
+                    <div class="nifty-time-head-n" >FINNIFTY OPTION DATA WEEKLY <span style="color: #3f6ad8"> 01-AUG-2023</span> </div>
+                </div>
+            </div>
+        </div>-->
 
 
 
 
 
 
-    <div class="d-flex " style="overflow-x: scroll">
+    <div class="d-flex">
 
         <div class="row ">
             {{-- <div class="col-md-12 col-sm-12">
@@ -102,22 +87,26 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span> STRIKE PRICE :</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213; background-color:#121419" id="starting">
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span>
+                                    STRIKE PRICE :</b></label>
+                            <select style="width: 234px; height: 37px; color: #a37213; background-color:#121419"
+                                id="starting">
                                 <!-- @foreach ($putArr as $key => $value)
-                                <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+    @endforeach -->
 
 
                             </select>
                         </div>
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span > STRIKE PRICE :</b></></label>
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span> STRIKE
+                                    PRICE :</b></></label>
 
-                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="ending">
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
+                                id="ending">
                                 <!-- @foreach ($putArr as $key => $value)
-                                <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-                                @endforeach -->
+    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+    @endforeach -->
                             </select>
                         </div>
                         <button type="button" id="result" class="button-29">Result</button>
@@ -140,18 +129,19 @@
     <div style="text-align: center;margin:20px">
         <div class="">
             @if (isset($putArr) && !empty($putArr))
-                <div class="d-flex  "style="
-                overflow-x: scroll;
-            ">
-                    <table class="nifty-table-call table-striped"  >
+                <div class="d-flex  ">
+                    <table class="nifty-table-call table-striped">
                         <!-- Call options table -->
                         <thead>
-                          
+
                             <tr>
-                               
+
                                 <td colspan="6" style=" background-color: #232a34;">
-                                    <b style="font-size:16px;float:left;color:white"> Calls Option 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path></svg>
+                                    <b style="font-size:16px;float:left;color:white"> Calls Option
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path>
+                                        </svg>
                                     </b>
                                 </td>
                             </tr>
@@ -206,8 +196,11 @@
                             <tr>
                                 <td colspan="6" style="color: red;background-color: #232a34;">
                                     <b style="font-size:16px;float:right;color:white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path></svg>
-                                         Puts Option</b>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path>
+                                        </svg>
+                                        Puts Option</b>
                                 </td>
                             </tr>
                             <tr style="color: #6c7687">
@@ -309,7 +302,7 @@
         });
     </script>
     <script type="text/javascript">
-       $("#expiry_date").change(function() {
+        $("#expiry_date").change(function() {
             const selectedOption = $(this).val();
             $.ajax({
                 url: '{{ URL::to('get-niftywithDt') }}/' + selectedOption,
