@@ -5,118 +5,85 @@
     <?php
     use Carbon\Carbon;
     ?>
-    {{-- <div class="app-page-title">
+
+
+
+
+
+    <!-- -- -----------------------------------------------------------------------------------------------------Expiry Date Function  -- -->
+
+    <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
                     <i class="pe-7s-graph1"> </i>
                 </div>
 
-                <div style="display: flex" >
-                    
-                    <div class="col-md-6 col-sm-6" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
-                    <div class="col-md-6 col-sm-6" style="float:right">
-                        NIkhil
-                    </div>
-
-                
-                </div>
-                 </div>
-        </div>
-    </div> --}}
-
-
-
-    <div style="display: flex" >
-                    
-        <div class="col-md-6 col-sm-6 page-title-heading" style="color:white;margin-top:16px"> Nifty- Option Chain</div>
-        <div class="col-md-6 col-sm-6" style="float:right">
-            
-                      {{--  --}}
-                      <div class="main-card mb-3 card">
-                        <div class="card-body" >
-                            <div class="table-responsive">
-                                <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
-                                <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="expiry_date">
-                                    <option value="" selected>Options</option>
-                                    @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
-                                        @foreach ($expAray as $index => $option)
-                                            <option value="{{ $option['option'] }}"
-                                                @if ($option['isUpcomingAfterInitial']) selected @endif>
-                                                {{ $option['option'] }}
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                <div style="display: flex">
+                    <div class="col-md-11 col-sm-1" style="color:white;margin-top:16px">Nifty- Option Chain</div>
+                    <div class="col-md-1 col-sm-1">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body" style="width: 915px;">
+                                <div class="table-responsive">
+                                    <label for="expiry_date" class="lable-expiry-date"><b>Select Expiry:</b></label>
+                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419""
+                                        id="expiry_date">
+                                        <option value="" selected>Options</option>
+                                        @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
+                                            @foreach ($expAray as $index => $option)
+                                                <option value="{{ $option['option'] }}"
+                                                    @if ($option['isUpcomingAfterInitial']) selected @endif>
+                                                    {{ $option['option'] }}
+                                                </option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                      {{--  --}}
-        </div>
+                </div>
 
-    
+            </div>
+        </div>
     </div>
 
 
 
-    <!--<div class="nifty-start-title">
-        <div class="page-title-wrapper">
-            <div class="nifty-title-heading">
-                {{-- <div class="page-title-icon">
-                    <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
-                </div> --}}
-                <div class="nifty-time-head-n" >FINNIFTY OPTION DATA WEEKLY <span style="color: #3f6ad8"> 01-AUG-2023</span> </div>
-            </div>
-        </div>
-    </div>-->
+
+    <!-- -----------------------------------------------------------------------------------------------------Strike Range Function  - -->
 
 
 
 
 
-
-    <div class="d-flex " style="overflow-x: scroll">
+    <div class="d-flex">
 
         <div class="row ">
-            {{-- <div class="col-md-12 col-sm-12">
-                <div class="main-card mb-3 card">
-                    <div class="card-body" style="width: 915px;">
-                        <div class="table-responsive">
-                            <label class="lable-expiry-date" for="expiry_date"><b>Select Expiry:</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="expiry_date">
-                                <option value="" selected>Options</option>
-                                @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
-                                    @foreach ($expAray as $index => $option)
-                                        <option value="{{ $option['option'] }}"
-                                            @if ($option['isUpcomingAfterInitial']) selected @endif>
-                                            {{ $option['option'] }}
-                                        </option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+
             <div class="col-md-12 col-sm-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span> STRIKE PRICE :</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213; background-color:#121419" id="starting">
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span>
+                                    STRIKE PRICE :</b></label>
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
+                                id="starting">
                                 @foreach ($putArr as $key => $value)
-                                <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+                                    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
                                 @endforeach
 
 
                             </select>
                         </div>
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span > STRIKE PRICE :</b></></label>
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span> STRIKE
+                                    PRICE :</b></></label>
 
-                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="ending">
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
+                                id="ending">
                                 @foreach ($putArr as $key => $value)
-                                <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+                                    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -140,18 +107,25 @@
     <div style="text-align: center;margin:20px">
         <div class="">
             @if (isset($putArr) && !empty($putArr))
-                <div class="d-flex  "style="
-                overflow-x: scroll;
-            ">
-                    <table class="nifty-table-call table-striped"  >
+                <div class="d-flex  "style="overflow-x: scroll; ">
+
+
+
+                    {{-- -------------------------------------------------------------------------------------------------------------------------------Calls Table Function  --}}
+
+
+                    <table class="nifty-table-call table-striped">
                         <!-- Call options table -->
                         <thead>
-                          
+
                             <tr>
-                               
+
                                 <td colspan="6" style=" background-color: #232a34;">
-                                    <b style="font-size:16px;float:left;color:white"> Calls Option 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path></svg>
+                                    <b style="font-size:16px;float:left;color:white"> Calls Option
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path>
+                                        </svg>
                                     </b>
                                 </td>
                             </tr>
@@ -200,14 +174,23 @@
 
                         </tbody>
                     </table>
+
+
+                    {{-- --------------------------------------------------------------------------------------------------------------------------------Puts Table Function  --}}
+
+
+
                     <table class="nifty-table-put">
                         <!-- Put options table -->
                         <thead>
                             <tr>
                                 <td colspan="6" style="color: red;background-color: #232a34;">
                                     <b style="font-size:16px;float:right;color:white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path></svg>
-                                         Puts Option</b>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path>
+                                        </svg>
+                                        Puts Option</b>
                                 </td>
                             </tr>
                             <tr style="color: #6c7687">
@@ -256,13 +239,16 @@
                         </tbody>
                     </table>
 
-       
+
                 </div>
             @else
                 <p>No option chain data available</p>
             @endif
         </div>
     </div>
+
+
+
     <style>
         @media screen and (min-width: 768px) {
             #myModal .modal-dialog {
@@ -271,6 +257,8 @@
             }
         }
     </style>
+
+
     <script>
         $(function() {
             table = $('#manage_all').DataTable({
@@ -310,8 +298,12 @@
             });
         });
     </script>
+
+    {{-- ------------------------------------------------------------------------------------------------------------------------------------------------Expiry Date Function & Strike Price Function --}}
+
+
     <script type="text/javascript">
-       $("#expiry_date").change(function() {
+        $("#expiry_date").change(function() {
             const selectedOption = $(this).val();
             $.ajax({
                 url: '{{ URL::to('get-niftywithDt') }}/' + selectedOption,
@@ -321,12 +313,16 @@
                     let updatedHtml = '<div class="d-flex "><table>';
                     response.callArr.forEach(function(item, key) {
                         updatedHtml += '<tr>';
-                        updatedHtml += '<td>' + (key + 1) + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
+                        updatedHtml += '<td style="color:white">' + (key + 1) + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTEREST + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.PRICECHANGEPERCENTAGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
                         updatedHtml += '</tr>';
                     });
                     updatedHtml += '</table></div>';
@@ -336,12 +332,19 @@
                     let updatedHtml1 = '<div class="d-flex "><table>';
                     response.putArr.forEach(function(item) {
                         updatedHtml1 += '<tr>';
-                        updatedHtml1 += '<td>' + item.value + '</td>';
-                        updatedHtml1 += '<td>' + item.LASTTRADEPRICE + '</td>';
-                        updatedHtml1 += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml1 += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTEREST + '</td>';
+                        updatedHtml1 +=
+                            '<td style="color:white; background-color: #22272f; border-bottom: hidden;">' +
+                            item.value + '</td>';
+                        updatedHtml1 += '<td  style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
+                        updatedHtml1 += '<td  style="color:white">' + item
+                            .PRICECHANGEPERCENTAGE + '</td>';
+                        updatedHtml1 += '<td  style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml1 += '<td  style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml1 += '<td  style="color:white">' + item.OPENINTEREST +
+                            '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
@@ -371,20 +374,26 @@
                     // Update the total counts for calls and puts in the table
                     let totalCallsHtml = '<tr>';
                     totalCallsHtml += '<td></td>';
-                    totalCallsHtml += '<td>' + totalCallsOpenInterest + ' oi</td>';
-                    totalCallsHtml += '<td>' + totalCallsOpenInterestChange + ' cioi</td>';
-                    totalCallsHtml += '<td>' + totalCallsTotalQtyTraded + ' Traded</td>';
-                    totalCallsHtml += '<td></td>';
-                    totalCallsHtml += '<td></td>';
+                    totalCallsHtml += '<td  style="color: #ffb020">' + totalCallsOpenInterest +
+                        ' oi</td>';
+                    totalCallsHtml += '<td  style="color: #ffb020">' + totalCallsOpenInterestChange +
+                        ' cioi</td>';
+                    totalCallsHtml += '<td style="color: #ffb020">' + totalCallsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
                     totalCallsHtml += '</tr>';
 
                     let totalPutsHtml = '<tr>';
-                    totalPutsHtml += '<td>-: Total :-</td>';
-                    totalPutsHtml += '<td></td>';
-                    totalPutsHtml += '<td></td>';
-                    totalPutsHtml += '<td>' + totalPutsTotalQtyTraded + ' Traded</td>';
-                    totalPutsHtml += '<td>' + totalPutsOpenInterestChange + ' cioi</td>';
-                    totalPutsHtml += '<td>' + totalPutsOpenInterest + ' oi</td>';
+                    totalPutsHtml +=
+                        '<td style="background-color:#ffb020;;color: #000000;">-: Total :-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsOpenInterestChange +
+                        ' cioi</td>';
+                    totalPutsHtml += '<td style="color: #ffb020">' + totalPutsOpenInterest + ' oi</td>';
                     totalPutsHtml += '</tr>';
 
                     // Append the total counts to the table
@@ -416,12 +425,16 @@
                     response.callArr.forEach(function(item, key) {
                         console.log(item)
                         updatedHtml += '<tr>';
-                        updatedHtml += '<td>' + parseInt(key + 1) + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTEREST + '</td>';
-                        updatedHtml += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml += '<td>' + item.LASTTRADEPRICE + '</td>';
+                        updatedHtml += '<td style="color:white">' + parseInt(key + 1) + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTEREST + '</td>';
+                        updatedHtml += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.PRICECHANGEPERCENTAGE +
+                            '</td>';
+                        updatedHtml += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
                         updatedHtml += '</tr>';
                     });
                     updatedHtml += '</table></div>';
@@ -431,12 +444,19 @@
                     let updatedHtml1 = '<div class="d-flex "><table>';
                     response.putArr.forEach(function(item) {
                         updatedHtml1 += '<tr>';
-                        updatedHtml1 += '<td>' + item.value + '</td>';
-                        updatedHtml1 += '<td>' + item.LASTTRADEPRICE + '</td>';
-                        updatedHtml1 += '<td>' + item.PRICECHANGEPERCENTAGE + '</td>';
-                        updatedHtml1 += '<td>' + item.TOTALQTYTRADED + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTERESTCHANGE + '</td>';
-                        updatedHtml1 += '<td>' + item.OPENINTEREST + '</td>';
+                        updatedHtml1 +=
+                            '<td  style="color:white; background-color: #22272f; border-bottom: hidden;" >' +
+                            item.value + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.LASTTRADEPRICE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item
+                            .PRICECHANGEPERCENTAGE + '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.TOTALQTYTRADED +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTERESTCHANGE +
+                            '</td>';
+                        updatedHtml1 += '<td style="color:white">' + item.OPENINTEREST +
+                            '</td>';
                         updatedHtml1 += '</tr>';
                     });
                     updatedHtml1 += '</table></div>';
@@ -444,6 +464,66 @@
                     console.log(updatedHtml1)
                     $("#updated_put_container").html(updatedHtml1);
                     $(".putCurrentData").hide();
+
+                    //     ----------------------------------------------------total count final code---------------------------------------
+
+                    // Update the total counts for calls
+                    let totalCallsOpenInterest = 0;
+                    let totalCallsOpenInterestChange = 0;
+                    let totalCallsTotalQtyTraded = 0;
+                    response.callArr.forEach(function(item) {
+                        totalCallsOpenInterest += item.OPENINTEREST;
+                        totalCallsOpenInterestChange += item.OPENINTERESTCHANGE;
+                        totalCallsTotalQtyTraded += item.TOTALQTYTRADED;
+                    });
+
+                    // Update the total counts for puts
+                    let totalPutsOpenInterest = 0;
+                    let totalPutsOpenInterestChange = 0;
+                    let totalPutsTotalQtyTraded = 0;
+                    response.putArr.forEach(function(item) {
+                        totalPutsOpenInterest += item.OPENINTEREST;
+                        totalPutsOpenInterestChange += item.OPENINTERESTCHANGE;
+                        totalPutsTotalQtyTraded += item.TOTALQTYTRADED;
+                    });
+
+                    // Update the total counts for calls and puts in the table
+                    let totalCallsHtml = '<tr>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:#ffb020">' + totalCallsOpenInterest +
+                        ' oi</td>';
+                    totalCallsHtml += '<td style="color:#ffb020">' + totalCallsOpenInterestChange +
+                        ' cioi</td>';
+                    totalCallsHtml += '<td style="color:#ffb020">' + totalCallsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '<td style="color:white">-</td>';
+                    totalCallsHtml += '</tr>';
+
+                    let totalPutsHtml = '<tr>';
+                    totalPutsHtml +=
+                        '<td style="background-color:#ffb020;;color: #000000;">-: Total :-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:white">-</td>';
+                    totalPutsHtml += '<td style="color:#ffb020">' + totalPutsTotalQtyTraded +
+                        ' Traded</td>';
+                    totalPutsHtml += '<td style="color:#ffb020">' + totalPutsOpenInterestChange +
+                        ' cioi</td>';
+                    totalPutsHtml += '<td style="color:#ffb020">' + totalPutsOpenInterest + ' oi</td>';
+                    totalPutsHtml += '</tr>';
+
+                    // Append the total counts to the table
+                    $("#updated_call_container").append(totalCallsHtml);
+                    $("#updated_put_container").append(totalPutsHtml);
+
+                    console.log(response);
+
+
+                    //---------------------------------------------------------------------------END---------------------------------------------
+
+
+
+
                 },
                 error: function(error) {
 

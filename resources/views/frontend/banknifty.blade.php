@@ -295,6 +295,7 @@
             </div>
         </div>
     </div>
+
     <style>
         @media screen and (min-width: 768px) {
             #myModal .modal-dialog {
@@ -303,6 +304,8 @@
             }
         }
     </style>
+
+
     <script>
         $(function() {
             table = $('#manage_all').DataTable({
@@ -344,7 +347,7 @@
     </script>
 
 
-    {{-- ------------------------------------------------------------------------------------------------------------------------------------------------Expiry Date Function --}}
+    {{-- ------------------------------------------------------------------------------------------------------------------------------------------------Expiry Date Function & Strike Price Function --}}
 
     <script type="text/javascript">
         $("#expiry_date").change(function() {
@@ -586,4 +589,6 @@
 
         })
     </script>
+
+
 @endsection
