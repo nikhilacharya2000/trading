@@ -5,6 +5,12 @@
     <?php
     use Carbon\Carbon;
     ?>
+
+
+
+
+    {{-- -----------------------------------------------------------------------------------------------------Expiry Date Function  --}}
+
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
@@ -12,14 +18,15 @@
                     <i class="pe-7s-graph1"> </i>
                 </div>
 
-                <div style="display: flex" >
+                <div style="display: flex">
                     <div class="col-md-11 col-sm-1" style="color:white;margin-top:16px">BankNifty- Option Chain</div>
                     <div class="col-md-1 col-sm-1">
                         <div class="main-card mb-3 card">
                             <div class="card-body" style="width: 915px;">
                                 <div class="table-responsive">
                                     <label for="expiry_date" class="lable-expiry-date"><b>Select Expiry:</b></label>
-                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"" id="expiry_date">
+                                    <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419""
+                                        id="expiry_date">
                                         <option value="" selected>Options</option>
                                         @if (isset($expAray) && is_array($expAray) && count($expAray) > 0)
                                             @foreach ($expAray as $index => $option)
@@ -35,13 +42,15 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
 
 
+
+    {{-- -----------------------------------------------------------------------------------------------------Strike Range Function  --}}
 
 
 
@@ -50,7 +59,7 @@
     <div class="d-flex">
 
         <div class="row ">
-           
+
             <div class="col-md-12 col-sm-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
@@ -77,8 +86,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="button"  id="result" class="button-29">Result</button>
-                      
+                        <button type="button" id="result" class="button-29">Result</button>
+
                     </div>
                 </div>
             </div>
@@ -98,13 +107,22 @@
         <div class="">
             @if (isset($putArr) && !empty($putArr))
                 <div class="d-flex  ">
+
+
+
+                    {{-- -------------------------------------------------------------------------------------------------------------------------------Calls Table Function  --}}
+
+
                     <table class="nifty-table-call table-striped">
                         <!-- Call options table -->
                         <thead>
                             <tr>
                                 <td colspan="6" style=" background-color: #232a34;">
                                     <b style="font-size:16px;float:left;color:white"> Calls Option
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path></svg></b>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Up" d="M8,0l8,13.5L8,10.9,0,13.5Z" fill="#0EDB67"></path>
+                                        </svg></b>
                                 </td>
                             </tr>
                             <tr style="color: #6c7687">
@@ -152,14 +170,22 @@
 
                         </tbody>
                     </table>
+
+
+                    {{-- --------------------------------------------------------------------------------------------------------------------------------Puts Table Function  --}}
+
+
                     <table class="nifty-table-put">
                         <!-- Put options table -->
                         <thead>
                             <tr>
                                 <td colspan="6" style="color: red;background-color: #232a34;">
                                     <b style="font-size:16px;float:right;color:white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5" viewBox="0 0 16 13.5"><path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path></svg>
-                                         Puts Option</b>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15.5"
+                                            viewBox="0 0 16 13.5">
+                                            <path id="Down" d="M8,13.5,16,0,8,2.6,0,0Z" fill="#FF4C4C"></path>
+                                        </svg>
+                                        Puts Option</b>
                                 </td>
                             </tr>
                             <tr style="color: #6c7687">
@@ -198,7 +224,7 @@
                             <!-- Add a new row to display the total counts for puts -->
                             <tr>
                                 <td style="background-color:#ffb020;;color: #000000;"><b>-: Total :-</b></td>
-                                <td  rowspan="2" style="background-color: #121419">-</td>
+                                <td rowspan="2" style="background-color: #121419">-</td>
 
                                 <td style="background-color: #121419">-</td>
                                 <td style="color: #ffb020"><b> {{ $totalPutsTotalQtyTraded }} Traded</td>
@@ -207,10 +233,66 @@
                             </tr>
                         </tbody>
                     </table>
+
+
+
+
+
+
                 </div>
             @else
                 <p>No option chain data available</p>
             @endif
+
+            <div>
+                {{-- --------------------------------------------------------------------------------------------------------------Calculate PCR and PCR strength --}}
+
+                <?php
+                function calculatePCRStrength($totalCallsOpenInterest, $totalPutsOpenInterest)
+                {
+                    $PCR = $totalCallsOpenInterest / $totalPutsOpenInterest;
+                
+                    if ($PCR > 3) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Strong Bullish (Strong Support)'];
+                    } elseif ($PCR >= 1.5 && $PCR <= 3) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Bullish'];
+                    } elseif ($PCR >= 0.5 && $PCR < 1.5) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Neutral'];
+                    } elseif ($PCR >= 0.33 && $PCR < 0.5) {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Bearish'];
+                    } else {
+                        return ['PCR' => $PCR, 'PCRStrength' => 'Strong Bearish (Strong Resistance)'];
+                    }
+                }
+                
+                // Assuming you have already calculated $totalCallsOpenInterest and $totalPutsOpenInterest
+                
+                // -----Calculate PCR and PCR strength
+                $PCRData = calculatePCRStrength($totalCallsOpenInterest, $totalPutsOpenInterest);
+                $PCR = $PCRData['PCR'];
+                $PCRStrength = $PCRData['PCRStrength'];
+                
+                ?>
+
+
+
+                <!-- -------------------------------------------------------------------------------------------------------------Display the data in another table -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="color:#ffffff;background:#ffb020">PCR</th>
+                            <th style="color:#ffffff;background:#ffb020">PCR Strength</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color:#ffffff;"><?php echo $PCR; ?></td>
+                            <td style="color:#ffffff;"><?php echo $PCRStrength; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
     <style>
@@ -260,8 +342,12 @@
             });
         });
     </script>
+
+
+    {{-- ------------------------------------------------------------------------------------------------------------------------------------------------Expiry Date Function --}}
+
     <script type="text/javascript">
-      $("#expiry_date").change(function() {
+        $("#expiry_date").change(function() {
             const selectedOption = $(this).val();
             $.ajax({
                 url: '{{ URL::to('get-bankniftywithDt') }}/' + selectedOption,
@@ -367,6 +453,9 @@
             });
         });
 
+
+
+        // ----------------------------------------------------------------------------------------------------------------------------------- Strike Price  Range 
 
         $("#result").click(function(e) {
             let starting = $("#starting").val();

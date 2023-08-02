@@ -87,13 +87,11 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body d-flex" style="width: 915px;">
                         <div class="table-responsive">
-                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span>
-                                    STRIKE PRICE :</b></label>
-                            <select style="width: 234px; height: 37px; color: #a37213; background-color:#121419"
-                                id="starting">
-                                <!-- @foreach ($putArr as $key => $value)
-    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-    @endforeach -->
+                            <label for="expiry_date"><b style="color: #6c7687"> <span style="color:green">START </span> STRIKE PRICE :</b></label>
+                            <select style="width: 234px; height: 37px; color: #a37213; background-color:#121419" id="starting">
+                                @foreach ($putArr as $key => $value)
+                                <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+                                @endforeach
 
 
                             </select>
@@ -102,11 +100,10 @@
                             <label for="expiry_date"><b style="color: #6c7687"> <span style="color:red">END </span> STRIKE
                                     PRICE :</b></></label>
 
-                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419"
-                                id="ending">
-                                <!-- @foreach ($putArr as $key => $value)
-    <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
-    @endforeach -->
+                            <select style="width: 234px; height: 37px; color: #a37213;background-color:#121419" id="ending">
+                                @foreach ($putArr as $key => $value)
+                                <option value="{{ $value['value'] }}">{{ $value['value'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <button type="button" id="result" class="button-29">Result</button>
@@ -248,6 +245,8 @@
                             </tr>
                         </tbody>
                     </table>
+
+       
                 </div>
             @else
                 <p>No option chain data available</p>
